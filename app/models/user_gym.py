@@ -11,7 +11,7 @@ class UserGym(db.Model):
     gym_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('gyms.id')), nullable=False)
 
     # Relationships
-    user_owner = db.relationship('User', back_populates='owned_user_gyms', foreign_keys=[user_id])
+    user_owner = db.relationship('User', back_populates='owned_user_gyms')
     gym = db.relationship('Gym', back_populates='user_gyms')
 
     def to_dict(self):

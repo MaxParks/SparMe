@@ -22,12 +22,12 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
     # Relationships
-    owned_sessions = db.relationship('Session', foreign_keys='Session.owner_id', back_populates='owner')
-    sessions_as_partner = db.relationship('Session', foreign_keys='Session.partner_id', back_populates='partner')
+    owned_sessions = db.relationship('Session', back_populates='owner')
+    sessions_as_partner = db.relationship('Session',back_populates='partner')
     owned_gyms = db.relationship('Gym', back_populates='owner')
     owned_user_gyms = db.relationship('UserGym', back_populates='user_owner', cascade='all, delete-orphan')
-    sent_messages = db.relationship('Message', foreign_keys='Message.sender_id', back_populates='sender', lazy='dynamic')
-    received_messages = db.relationship('Message', foreign_keys='Message.receiver_id', back_populates='receiver', lazy='dynamic')
+    sent_messages = db.relationship('Message',back_populates='sender', lazy='dynamic')
+    received_messages = db.relationship('Message', back_populates='receiver', lazy='dynamic')
     user_reviews = db.relationship('Review', back_populates='reviewer')
 
     @property
