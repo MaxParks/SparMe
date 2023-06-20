@@ -63,9 +63,14 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
-            username=form.data['username'],
+            firstName=form.data['firstName'],
+            lastName=form.data['lastName'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            experience=form.data['experience'],
+            city=form.data['city'],
+            weight=form.data['weight'],
+            height=form.data['height']
         )
         db.session.add(user)
         db.session.commit()
