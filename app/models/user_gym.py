@@ -11,14 +11,14 @@ class UserGym(db.Model):
     gym_id = db.Column(db.Integer, db.ForeignKey('gyms.id'), nullable=False)
 
     # Relationships
-    user = db.relationship('User', backref='user_gyms')
-    gym = db.relationship('Gym', backref='user_gyms')
+    user_owner = db.relationship('User', back_populates='owned_user_gyms', foreign_keys=[user_id])
+    gym = db.relationship('Gym', back_populates='user_gyms')
 
     def to_dict(self):
         return {
             'id': self.id,
             'user_id': self.user_id,
             'gym_id': self.gym_id,
-            'user': self.user.id,
-            'gym': self.gym.id
+            'user': self.user_owner.to_dict(),
+            'gym': self.gym.to_dict()
         }

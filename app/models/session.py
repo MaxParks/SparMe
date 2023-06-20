@@ -11,16 +11,17 @@ class Session(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     partner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     gym_id = db.Column(db.Integer, db.ForeignKey('gyms.id'), nullable=False)
-    session_type = db.Column(db.String(100))
-    session_date = db.Column(db.DateTime)
-    details = db.Column(db.String(800))
+    session_type = db.Column(db.String(100), nullable=False)
+    session_date = db.Column(db.DateTime, nullable=False)
+    details = db.Column(db.String(800), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
     # Relationships
-    owner = db.relationship('User', foreign_keys=[owner_id], backref='owned_sessions')
-    partner = db.relationship('User', foreign_keys=[partner_id], backref='partner_sessions')
-    gym = db.relationship('Gym', backref='sessions')
+    owner = db.relationship('User', foreign_keys=[owner_id], back_populates='owned_sessions')
+    partner = db.relationship('User', foreign_keys=[partner_id], back_populates='sessions_as_partner')
+    gym = db.relationship('Gym', back_populates='sessions')
+    reviews = db.relationship('Review', back_populates='session')
 
     def to_dict(self):
         return {
@@ -33,7 +34,7 @@ class Session(db.Model):
             'details': self.details,
             'created_at': self.created_at.strftime('%m/%d/%Y'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y'),
-            'owner': self.owner_id,
-            'partner': self.partner_id,
-            'gym': self.gym
+            'owner':  self.owner.to_dict(),
+            'partner': self.partner.to_dict(),
+            'gym': self.gym.to_dict()
         }

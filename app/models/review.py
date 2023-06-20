@@ -16,8 +16,8 @@ class Review(db.Model):
     updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
     # Relationships
-    reviewer = db.relationship('User', backref='reviews')
-    session = db.relationship('Session', backref='reviews')
+    reviewer = db.relationship('User', back_populates='user_reviews')
+    session = db.relationship('Session', back_populates='reviews')
 
     def to_dict(self):
         return {
@@ -28,6 +28,6 @@ class Review(db.Model):
             'review_text': self.review_text,
             'created_at': self.created_at.strftime('%m/%d/%Y'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y'),
-            'reviewer': self.reviewer_id,
-            'session': self.session_id
+            'reviewer': self.reviewer.to_dict(),
+            'session': self.session.to_dict()
         }

@@ -18,6 +18,7 @@ class Gym(db.Model):
     # Relationships
     owner = db.relationship('User', back_populates='owned_gyms')
     user_gyms = db.relationship('UserGym', back_populates='gym')
+    sessions = db.relationship('Session', back_populates='gym')
 
     def to_dict(self):
         return {
@@ -29,5 +30,6 @@ class Gym(db.Model):
             'created_at': self.created_at.strftime('%m/%d/%Y'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y'),
             'owner': self.owner.id,
-            'user_gyms': [user_gym.id for user_gym in self.user_gyms]
+            'user_gyms': [user_gym.id for user_gym in self.user_gyms],
+            'sessions': [session.id for session in self.session_list]
         }
