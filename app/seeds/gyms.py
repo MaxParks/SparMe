@@ -1,4 +1,4 @@
-from app.models import db, User, environment, SCHEMA
+from app.models import db, User, Gym, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
 
