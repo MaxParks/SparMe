@@ -8,7 +8,7 @@ def seed_gyms():
         owner=User.query.filter_by(email='demo@aa.io').first(),
         name='Gym A',
         city='New York',
-        martial_art='Karate',
+        martial_art='MMA',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -24,7 +24,7 @@ def seed_gyms():
 
     gym3 = Gym(
         owner=User.query.filter_by(email='marnie@aa.io').first(),
-        name='Gym B',
+        name='Gym C',
         city='Las Vegas',
         martial_art='BJJ',
         created_at=datetime.utcnow(),
@@ -47,7 +47,7 @@ def seed_gyms():
 # it will reset the primary keys for you as well.
 def undo_gyms():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.gyms RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM gyms"))
 
