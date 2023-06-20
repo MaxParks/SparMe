@@ -3,6 +3,8 @@ from .users import seed_users, undo_users
 from .gyms import seed_gyms, undo_gyms
 from .user_gyms import seed_user_gyms, undo_user_gyms
 from .sessions import seed_sessions, undo_sessions
+from .reviews import seed_reviews, undo_reviews
+from .messages import seed_messages, undo_messages
 
 from app.models.db import db, environment, SCHEMA
 
@@ -19,6 +21,8 @@ def seed():
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
+        undo_messages()
+        undo_reviews()
         undo_sessions()
         undo_user_gyms()
         undo_gyms()
@@ -27,12 +31,16 @@ def seed():
     seed_gyms()
     seed_user_gyms()
     seed_sessions()
+    seed_reviews()
+    seed_messages()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_messages()
+    undo_reviews()
     undo_sessions()
     undo_user_gyms()
     undo_gyms()
