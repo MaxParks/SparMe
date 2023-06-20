@@ -8,9 +8,9 @@ class Session(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    partner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    gym_id = db.Column(db.Integer, db.ForeignKey('gyms.id'), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    partner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    gym_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('gyms.id')), nullable=False)
     session_type = db.Column(db.String(100), nullable=False)
     session_date = db.Column(db.DateTime, nullable=False)
     details = db.Column(db.String(800), nullable=False)

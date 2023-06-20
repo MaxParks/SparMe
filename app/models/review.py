@@ -8,8 +8,8 @@ class Review(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    reviewer_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    session_id = db.Column(db.Integer, db.ForeignKey('sessions.id'), nullable=False)
+    reviewer_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    session_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('sessions.id')), nullable=False)
     rating = db.Column(db.Integer)
     review_text = db.Column(db.String(800))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
