@@ -15,8 +15,8 @@ class Message(db.Model):
     updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
     # Relationships
-    sender = db.relationship('User', back_populates='sent_messages')
-    receiver = db.relationship('User', back_populates='received_messages')
+    sender = db.relationship('User', foreign_keys=[sender_id], back_populates='sent_messages')
+    receiver = db.relationship('User', foreign_keys=[receiver_id], back_populates='received_messages')
 
     def to_dict(self):
         return {

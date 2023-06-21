@@ -4,5 +4,5 @@ from .gym import Gym
 from .message import Message
 from .review import Review
 from .session import Session
-from .user_gym import UserGym
+from .user_gyms import UserGym
 from .db import environment, SCHEMA

@@ -18,8 +18,8 @@ class Session(db.Model):
     updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
     # Relationships
-    owner = db.relationship('User', back_populates='owned_sessions')
-    partner = db.relationship('User', back_populates='sessions_as_partner')
+    owner = db.relationship('User', foreign_keys=[owner_id], back_populates='owned_sessions')
+    partner = db.relationship('User', foreign_keys=[partner_id], back_populates='sessions_as_partner')
     gym = db.relationship('Gym', back_populates='sessions')
     reviews = db.relationship('Review', back_populates='session')
 
