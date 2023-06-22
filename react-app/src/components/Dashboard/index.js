@@ -48,7 +48,7 @@ function Dashboard() {
 
         <div className="split-container">
           <div className="section-title-container">
-            <h2 className="section-title">People</h2>
+            <h2 className="section-title">People:</h2>
           </div>
           </div>
           <div className="task-list">
@@ -56,7 +56,7 @@ function Dashboard() {
               Object.values(dashboardData.allUsers).map((user) => (
                 <div key={user.id} className="user-item">
                   <div className="task-link">
-                    <h2>{user.firstName}  {user.lastName}</h2>
+                    {user.firstName}  {user.lastName}
                   </div>
                 </div>
               ))}
@@ -66,10 +66,12 @@ function Dashboard() {
           <div className="section-title-container">
             <h2 className="section-title">Upcoming Spars:</h2>
           </div>
-            {dashboardData.sessions &&
-              Object.values(dashboardData.sessions).map((session) => (
-                  {session}
-                ))}
+          {dashboardData.sessions &&
+            Object.values(dashboardData.sessions).map((session) => (
+              <div key={session.id}>
+                {session.owner.firstName} {session.owner.lastName} --- {session.partner.firstName} {session.partner.lastName} --- {session.gym.name} --- {session.session_type} --- {session.session_date}
+              </div>
+            ))}
           </div>
         </div>
   );

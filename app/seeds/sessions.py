@@ -2,6 +2,7 @@ from app.models import db, User, Gym, Session, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime, timedelta
 from random import randint
+import random
 
 def seed_sessions():
     # Find users and gyms
@@ -18,7 +19,7 @@ def seed_sessions():
         partner_id=marnie_user.id,
         gym_id=gym_a.id,
         session_type="MMA Training",
-        session_date=datetime.utcnow() + timedelta(days=randint(1, 10)),
+        session_date=datetime.utcnow() + timedelta(days=random.randint(1, 10)) + timedelta(hours=random.randint(0, 23)) + timedelta(minutes=random.randint(0, 59)),
         details="A Hard sparring session.",
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
@@ -29,7 +30,7 @@ def seed_sessions():
         partner_id=demo_user.id,
         gym_id=gym_b.id,
         session_type="Boxing",
-        session_date=datetime.utcnow() + timedelta(days=randint(1, 10)),
+        session_date=datetime.utcnow() + timedelta(days=random.randint(1, 10)) + timedelta(hours=random.randint(0, 23)) + timedelta(minutes=random.randint(0, 59)),
         details="Easy boxing session today",
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
@@ -40,7 +41,7 @@ def seed_sessions():
         partner_id=demo_user.id,
         gym_id=gym_a.id,
         session_type="BJJ Training",
-        session_date=datetime.utcnow() + timedelta(days=randint(1, 10)),
+        session_date=datetime.utcnow() + timedelta(days=random.randint(1, 10)) + timedelta(hours=random.randint(0, 23)) + timedelta(minutes=random.randint(0, 59)),
         details="Trying to learn some new moves",
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()

@@ -39,7 +39,7 @@ function LandingPage({ isLoaded }) {
         <div className="flex-split">
           <div className="left-side">
             <h3 className="landing-page-title">
-              Find your sparring partner today!
+              Welcome to SparMe, the sparring session app!
             </h3>
             <p style={{ fontSize: "16px", color: "black" }}>
               Want to learn, Want to get better, Want good sparring sessions? SparMe
@@ -47,11 +47,11 @@ function LandingPage({ isLoaded }) {
             </p>
             <div className="cta-buttons">
               <OpenModalButton
-                buttonText="Get Started"
+                buttonText="Start Here"
                 modalComponent={<SignupFormModal />}
                 className="button-get-started"
               />
-              <button className="button-transparent">Learn How It Works</button>
+              <button className="button-transparent">About SparMe</button>
             </div>
           </div>
         </div>

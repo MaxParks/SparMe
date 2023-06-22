@@ -31,5 +31,5 @@ class Gym(db.Model):
             'updated_at': self.updated_at.strftime('%m/%d/%Y'),
             'owner': self.owner.id,
             'user_gyms': [user_gym.id for user_gym in self.user_gyms],
-            'sessions': [session.id for session in self.session_list]
+            'sessions': [session.id for session in self.sessions]
         }
