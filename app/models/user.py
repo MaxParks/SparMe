@@ -32,7 +32,7 @@ class User(db.Model, UserMixin):
 
     @property
     def password(self):
-        raise AttributeError('Password is not readable')
+        return self.hashed_password
 
     @password.setter
     def password(self, password):

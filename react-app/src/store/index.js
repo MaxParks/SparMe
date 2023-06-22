@@ -1,9 +1,19 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
+// import gyms from './gyms'
+// import sessions from './sessions'
+import dashboard from './dashboard'
+// import messages from './messages'
+// import reviews from './reviews'
 
 const rootReducer = combineReducers({
   session,
+  // gyms,
+  // sessions,
+  // messages,
+  // reviews,
+  dashboard
 });
 
 
