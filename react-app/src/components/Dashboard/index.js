@@ -5,7 +5,7 @@ import { getDashboardThunk } from "../../store/dashboard";
 import ProfileButton from "../Navigation/ProfileButton";
 import OpenModalButton from "../OpenModalButton";
 
-// import "./Dashboard.css";
+import "./Dashboard.css";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -18,21 +18,21 @@ function Dashboard() {
 
   const currentDate = new Date();
   const currentHour = currentDate.getHours();
-  let greetingMessage = "Good evening";
+  let greetingMessage = "Welcome back and good evening";
   if (currentHour < 12) {
-    greetingMessage = "Good morning";
+    greetingMessage = "Welcome back and good morning";
   } else if (currentHour < 18) {
-    greetingMessage = "Good afternoon";
+    greetingMessage = "Welcome back and good afternoon";
   }
 
   return (
-    <div>
-      <div className="header-container">
-        <h1 className="header-title">Dashboard</h1>
-        <ProfileButton user={sessionUser} />
+    <div className="dashboard-container">
+      <div className="dashboard-header">
+        <h1 className="dashboard-title">Dashboard</h1>
+        <ProfileButton user={sessionUser} className="dashboard-profile-button" />
       </div>
 
-      <div className="dashboard-header">
+      <div className="dashboard-date-container">
         <h2 className="dashboard-date">
           {currentDate.toLocaleDateString(undefined, {
             weekday: "long",
@@ -40,40 +40,44 @@ function Dashboard() {
             day: "numeric",
           })}
         </h2>
-        {/* <h3 className="dashboard-greeting">
-          {`${greetingMessage}, ${sessionUser.firstName}`}
-        </h3> */}
+        <h3 className="dashboard-greeting">
+          {`${greetingMessage}, ${sessionUser.firstName} ${sessionUser.lastName}`}
+        </h3>
       </div>
 
-
-        <div className="split-container">
-          <div className="section-title-container">
-            <h2 className="section-title">People:</h2>
-          </div>
-          </div>
-          <div className="task-list">
-            {dashboardData.allUsers &&
-              Object.values(dashboardData.allUsers).map((user) => (
-                <div key={user.id} className="user-item">
-                  <div className="task-link">
-                    {user.firstName}  {user.lastName}
-                  </div>
+      <div className="dashboard-section-container">
+        <div className="dashboard-section">
+          <h2 className="dashboard-section-title">People:</h2>
+        </div>
+        <div className="dashboard-task-list">
+          {dashboardData.allUsers &&
+            Object.values(dashboardData.allUsers).map((user) => (
+              <div key={user.id} className="dashboard-user-item">
+                <div className="dashboard-task-link">
+                  {user.firstName} {user.lastName}
                 </div>
-              ))}
-          </div>
-
-        <div className="split-container">
-          <div className="section-title-container">
-            <h2 className="section-title">Upcoming Spars:</h2>
-          </div>
-          {dashboardData.sessions &&
-            Object.values(dashboardData.sessions).map((session) => (
-              <div key={session.id}>
-                {session.owner.firstName} {session.owner.lastName} --- {session.partner.firstName} {session.partner.lastName} --- {session.gym.name} --- {session.session_type} --- {session.session_date}
               </div>
             ))}
-          </div>
         </div>
+      </div>
+
+      <div className="dashboard-section-container">
+        <div className="dashboard-section">
+          <h2 className="dashboard-section-title">Upcoming Spars:</h2>
+        </div>
+        <div className="dashboard-task-list">
+          {dashboardData.sessions &&
+            Object.values(dashboardData.sessions).map((session) => (
+              <div key={session.id} className="dashboard-upcoming-spars">
+                {session.owner.firstName} {session.owner.lastName} ---{" "}
+                {session.partner.firstName} {session.partner.lastName} ---{" "}
+                {session.gym.name} --- {session.session_type} ---{" "}
+                {session.session_date}
+              </div>
+            ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
