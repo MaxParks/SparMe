@@ -29,14 +29,12 @@ function SignupFormModal() {
       );
       if (data) {
         setErrors(data.errors);
-      } else if (data && data.id) {
-		setIsModalOpen(false)
-		history.push('/user/dashboard')
-      }
-    } else {
-      setErrors(["Confirm Password field must be the same as the Password field"]);
+      } else {
+        closeModal()
+        history.push("/user/dashboard");
     }
   };
+}
 
   return (
     <>
