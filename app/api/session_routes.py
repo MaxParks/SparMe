@@ -25,7 +25,9 @@ def get_session(id):
     if not session:
         return {"message": "Session not found", "statusCode": 404}, 404
 
-    return jsonify(session.to_dict()), 200
+    session_data = session.to_dict()
+
+    return jsonify(session_data), 200
 
 # Get sessions the current user made or is a part of
 
@@ -91,17 +93,12 @@ def update_session(id):
         return {"message": "Unauthorized", "statusCode": 403}, 403
 
     form = SessionForm()
+
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        partner = User.query.filter_by(firstName=form.data['partner_first_name'], lastName=form.data['partner_last_name']).first()
-        gym = Gym.query.filter_by(name=form.data['gym_name']).first()
 
-        if not partner or not gym:
-            return {'errors': ['Invalid partner name or gym name']}, 400
-
-        session.partner_id = partner.id
-        session.gym_id = gym.id
+        session.gym_id = form.data['gym_id']
         session.session_type = form.data['session_type']
         session.session_date = form.data['session_date']
         session.details = form.data['details']

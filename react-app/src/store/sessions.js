@@ -21,9 +21,12 @@ export const addSession = data => ({
   payload: data
 });
 
-export const updateSession = data => ({
+export const updateSession = (sessionId, data) => ({
   type: UPDATE_SESSION,
-  payload: data
+  data: {
+    id: sessionId,
+    ...data,
+  },
 });
 
 export const deleteSession = id => ({
@@ -68,8 +71,8 @@ export const createSessionThunk = sessionData => async dispatch => {
   }
 };
 
-export const updateSessionThunk = (id, sessionData) => async dispatch => {
-  const response = await fetch(`/api/sessions/${id}`, {
+export const updateSessionThunk = (sessionId, sessionData) => async dispatch => {
+  const response = await fetch(`/api/sessions/${sessionId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -79,7 +82,7 @@ export const updateSessionThunk = (id, sessionData) => async dispatch => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(updateSession(data));
+    dispatch(updateSession(sessionId, data));
     return data;
   }
 };
@@ -95,10 +98,8 @@ export const deleteSessionThunk = id => async dispatch => {
 };
 
 // Initial state
-const initialState = {
-  sessions: [],
-  session: null
-};
+const initialState = {};
+
 
 // Reducer
 export default function sessionsReducer(state = initialState, action){
@@ -111,7 +112,7 @@ export default function sessionsReducer(state = initialState, action){
       case LOAD_SESSION:
       return {
         ...state,
-        session: action.payload
+        ...action.payload
       };
     case ADD_SESSION:
       return {
@@ -121,9 +122,7 @@ export default function sessionsReducer(state = initialState, action){
     case UPDATE_SESSION:
       return {
         ...state,
-        sessions: state.sessions.map(session =>
-          session.id === action.payload.id ? action.payload : session
-        )
+        [action.data.id]: action.data,
       };
     case DELETE_SESSION:
       return {

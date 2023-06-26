@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Dashboard from './components/Dashboard'
 import LandingPage from './components/LandingPage'
+import GetSession from './components/Sessions/GetSession'
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route exact path="/user/dashboard/">
             {user ? <Dashboard /> : <Redirect to="/" />}
+            </Route>
+          <Route path="/sessions/:id">
+              <GetSession />
             </Route>
         </Switch>
       )}
