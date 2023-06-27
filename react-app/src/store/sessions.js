@@ -95,6 +95,7 @@ export const deleteSessionThunk = id => async dispatch => {
   if (response.ok) {
     dispatch(deleteSession(id));
   }
+
 };
 
 // Initial state
@@ -125,10 +126,9 @@ export default function sessionsReducer(state = initialState, action){
         [action.data.id]: action.data,
       };
     case DELETE_SESSION:
-      return {
-        ...state,
-        sessions: state.sessions.filter(session => session.id !== action.payload)
-      };
+      const newState = { ...state };
+      delete newState[action.payload];
+      return newState;
     default:
       return state;
   }

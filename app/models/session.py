@@ -21,7 +21,7 @@ class Session(db.Model):
     owner = db.relationship('User', foreign_keys=[owner_id], back_populates='owned_sessions')
     partner = db.relationship('User', foreign_keys=[partner_id], back_populates='sessions_as_partner')
     gym = db.relationship('Gym', back_populates='sessions')
-    reviews = db.relationship('Review', back_populates='session')
+    reviews = db.relationship('Review', back_populates='session', cascade="all, delete")
 
     def to_dict(self):
         return {

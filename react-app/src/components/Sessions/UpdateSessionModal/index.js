@@ -62,12 +62,11 @@ function UpdateSessionModal({ id }) {
 
     setErrors({});
 
-    const formattedSessionDate = new Date(sessionDate).toISOString();
 
     const updatedSession = {
       gym_id: gymId,
       details,
-      session_date: formattedSessionDate,
+      session_date: sessionDate,
       session_type: sessionType
     };
 
@@ -117,7 +116,7 @@ function UpdateSessionModal({ id }) {
         </div>
         <div className="form-field">
           <input
-            type="datetime-local"
+            type="date"
             id="session date"
             value={sessionDate}
             onChange={(e) => setSessionDate(e.target.value)}
