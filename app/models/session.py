@@ -32,9 +32,9 @@ class Session(db.Model):
             'session_type': self.session_type,
             'session_date': self.session_date.strftime('%m/%d/%Y %I:%M:%S %p') if self.session_date else None,
             'details': self.details,
-            'created_at': self.created_at.strftime('%m/%d/%Y'),
-            'updated_at': self.updated_at.strftime('%m/%d/%Y'),
-            'owner':  self.owner.to_dict(),
-            'partner': self.partner.to_dict(),
-            'gym': self.gym.to_dict()
+            'created_at': self.created_at.strftime('%m/%d/%Y') if self.created_at else None,
+            'updated_at': self.updated_at.strftime('%m/%d/%Y') if self.updated_at else None,
+            'owner': self.owner.to_dict() if self.owner else None,
+            'partner': self.partner.to_dict() if self.partner else None,
+            'gym': self.gym.to_dict() if self.gym else None
         }

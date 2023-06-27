@@ -55,21 +55,31 @@ export const getSessionThunk = id => async dispatch => {
     }
   };
 
-export const createSessionThunk = sessionData => async dispatch => {
-  const response = await fetch('/api/sessions/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(sessionData)
-  });
+  export const createSessionThunk = (gym_id, partner_id, details, session_date, session_type) => async (dispatch) => {
+    const sessionData = {
+      gym_id,
+      partner_id,
+      details,
+      session_date,
+      session_type,
+    };
 
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(addSession(data));
-    return data;
-  }
-};
+    const response = await fetch('/api/sessions/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(sessionData),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(addSession(data));
+      return data;
+    }
+  };
+
+
 
 export const updateSessionThunk = (sessionId, sessionData) => async dispatch => {
   const response = await fetch(`/api/sessions/${sessionId}`, {
@@ -118,7 +128,9 @@ export default function sessionsReducer(state = initialState, action){
     case ADD_SESSION:
       return {
         ...state,
-        sessions: [...state.sessions, action.payload]
+        sessions: {
+          [action.payload.id]: action.payload,
+        }
       };
     case UPDATE_SESSION:
       return {

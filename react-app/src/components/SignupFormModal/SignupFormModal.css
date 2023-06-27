@@ -56,17 +56,3 @@
     border-radius: 4px;
     cursor: pointer;
   }
-
-  .demo-button {
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .demo-button:hover,
-  .login-button:hover {
-    opacity: 0.8;
-  }

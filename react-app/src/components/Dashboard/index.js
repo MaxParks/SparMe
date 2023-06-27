@@ -6,6 +6,7 @@ import ProfileButton from "../Navigation/ProfileButton";
 import OpenModalButton from "../OpenModalButton";
 
 import "./Dashboard.css";
+import CreateSessionModal from "../Sessions/AddSessionModal";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function Dashboard() {
         <ProfileButton user={sessionUser} className="dashboard-profile-button" />
       </div>
 
-      <div className="dashboard-date-container">
+      {/* <div className="dashboard-date-container">
         <h2 className="dashboard-date">
           {currentDate.toLocaleDateString(undefined, {
             weekday: "long",
@@ -43,7 +44,9 @@ function Dashboard() {
         <h3 className="dashboard-greeting">
           {`${greetingMessage}, ${sessionUser.firstName} ${sessionUser.lastName}`}
         </h3>
-      </div>
+      </div> */}
+
+      <br></br>
 
       <div className="dashboard-section-container">
         <div className="dashboard-section">
@@ -69,14 +72,26 @@ function Dashboard() {
           {dashboardData.sessions &&
             Object.values(dashboardData.sessions).map((session) => (
               <div key={session.id} className="dashboard-upcoming-spars">
-                {session.owner.firstName} {session.owner.lastName} ---{" "}
-                {session.partner.firstName} {session.partner.lastName} ---{" "}
-                {session.gym.name} --- {session.session_type} ---{" "}
-                {session.session_date}
+                <Link to={`/sessions/${session.id}`}>
+                  {session.owner.firstName} {session.owner.lastName} ---{" "}
+                  {session.partner.firstName} {session.partner.lastName} ---{" "}
+                  {session.gym.name} --- {session.session_type} ---{" "}
+                  {session.session_date}
+                </Link>
               </div>
             ))}
         </div>
       </div>
+
+
+        <OpenModalButton
+          buttonText="Create a Session"
+          modalComponent={<CreateSessionModal />}
+          className="session"
+        />
+
+      <br />
+
     </div>
   );
 }

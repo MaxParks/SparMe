@@ -3,7 +3,7 @@ import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
-// import "./LoginForm.css";
+import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -19,14 +19,14 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
-        history.push("/user/dashboard");
+      closeModal();
+      history.push("/user/dashboard");
     }
   };
 
   return (
-    <>
-    <p>Welcome to SparMe</p>
+    <div className="login-form-container">
+      <h2>Welcome to SparMe</h2>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul className="error-list">
@@ -34,8 +34,8 @@ function LoginFormModal() {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Email
+        <div className="form-field">
+          <label htmlFor="email">Email</label>
           <input
             type="text"
             id="email"
@@ -44,9 +44,9 @@ function LoginFormModal() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password
+        </div>
+        <div className="form-field">
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -55,9 +55,11 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Log In</button>
-        <div className="login-demo-button">
+        </div>
+        <div className="form-actions">
+          <button type="submit" className="login-button">
+            Log In
+          </button>
           <button
             className="demo-button"
             onClick={async (e) => {
@@ -79,7 +81,7 @@ function LoginFormModal() {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

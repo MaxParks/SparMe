@@ -63,19 +63,24 @@ def create_session():
 
     if form.validate_on_submit():
 
-        partner = User.query.filter_by(firstName=form.data['partner_first_name'], lastName=form.data['partner_last_name']).first()
-        gym = Gym.query.filter_by(name=form.data['gym_name']).first()
+        partner_id = form.data['partner_id']
+        gym_id = form.data['gym_id']
+
+        partner = User.query.get(partner_id)
+        gym = Gym.query.get(gym_id)
 
         if not partner or not gym:
             return {'errors': ['Invalid partner name or gym name']}, 400
 
         session = Session(
-            partner_id=partner.id,
-            gym_id=gym.id,
+            owner_id=current_user.id,
+            partner_id=partner.id,  # Assuming partner.id is the correct field to use
+            gym_id=gym.id,  # Assuming gym.id is the correct field to use
             session_type=form.data['session_type'],
             session_date=form.data['session_date'],
             details=form.data['details']
         )
+
         db.session.add(session)
         db.session.commit()
         return jsonify(session.to_dict()), 201

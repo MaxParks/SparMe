@@ -1,55 +1,42 @@
-import React, { useState, useEffect } from "react";
-import { updateSessionThunk, getSessionThunk } from "../../../store/sessions";
+import React, { useState } from "react";
+import { createSessionThunk} from "../../../store/sessions";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+// import './CreateSessionModal.css'
 
-function UpdateSessionModal({ id }) {
+function CreateSessionModal(isLoaded) {
   const dispatch = useDispatch();
-  const [gymId, setGymId] = useState("");
-  const [sessionType, setSessionType] = useState("");
-  const [sessionDate, setSessionDate] = useState("");
+  const [gym_id, setGymId] = useState("");
+  const [partner_id, setPartnerId] = useState("")
+  const [session_type, setSessionType] = useState("");
+  const [session_date, setSessionDate] = useState("");
   const [details, setDetails] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
   const history = useHistory();
 
-  const session = useSelector((state) => state.sessions);
 
-  useEffect(() => {
-    if (session) {
-      setGymId(session.gym_id);
-      setDetails(session.details);
-      setSessionType(session.session_type);
-      setSessionDate(session.session_date);
-
-      const sessionDateFormatted = new Date(session.session_date).toISOString().split("T")[0];
-      setSessionDate(sessionDateFormatted);
-    }
-  }, [session]);
-
-  useEffect(() => {
-    if (!session) {
-      dispatch(getSessionThunk(id));
-    }
-  }, [dispatch, id, session]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const errors = {};
-    if (!gymId) {
-      errors.gymId = "Gym Id is a required field.";
+    if (!gym_id) {
+      errors.gym_id = "Gym Id is a required field.";
     }
+    if (!partner_id) {
+        errors.partner_id = "Partner Id is a required field.";
+      }
     if (!details) {
       errors.details = "Details is a required field.";
     }
-    if (!sessionDate) {
-      errors.sessionDate = "Session date is a required field.";
+    if (!session_date) {
+      errors.session_date = "Session date is a required field.";
     }
-    if (!sessionType) {
-      errors.sessionType = "Session type is a required field.";
-    }
+    if (!session_type) {
+        errors.session_type = "Session type is a required field.";
+      }
 
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
@@ -58,60 +45,56 @@ function UpdateSessionModal({ id }) {
 
     setErrors({});
 
-    const updatedSession = {
-      gym_id: gymId,
-      partner_id: session.partner_id, // Retain the original partner ID
-      details,
-      session_date: sessionDate,
-      session_type: sessionType,
-    };
 
-    const data = await dispatch(updateSessionThunk(id, updatedSession));
+    const data = await dispatch(createSessionThunk(gym_id,partner_id,details,session_date,session_type,));
 
     if (Array.isArray(data)) {
       setErrors({ general: data });
     } else if (data && data.id) {
-      dispatch(getSessionThunk(id));
       closeModal();
-      history.push(`/sessions/${id}`);
+      history.push(`/sessions/${data.id}`);
     } else {
       closeModal();
     }
   };
 
+
   return (
     <div>
-      <h2>Update Session</h2>
+      <h2>Create Session</h2>
       <form onSubmit={handleSubmit}>
         <ul className="error-list">
-          {errors.gymId && <li>{errors.gymId}</li>}
+          {errors.gym_id && <li>{errors.gym_id}</li>}
+          {errors.partner_id && <li>{errors.partner_id}</li>}
           {errors.details && <li>{errors.details}</li>}
-          {errors.sessionDate && <li>{errors.sessionDate}</li>}
-          {errors.sessionType && <li>{errors.sessionType}</li>}
+          {errors.session_date && <li>{errors.session_date}</li>}
+          {errors.session_type && <li>{errors.session_type}</li>}
           {errors.general && errors.general.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
 
         <div className="form-field">
           <input
             type="text"
-            id="gymId"
+            id="gym Id"
             placeholder="Gym Id"
-            value={gymId}
+            value={gym_id}
             onChange={(e) => setGymId(e.target.value)}
           />
         </div>
         <div className="form-field">
           <input
             type="text"
-            id="partnerId"
-            placeholder={`Partner ID: ${session.partner_id}`}
-            disabled
+            id="partner Id"
+            placeholder="Partner Id"
+            value={partner_id}
+            onChange={(e) => setPartnerId(e.target.value)}
           />
         </div>
         <div className="form-field">
           <input
             type="text"
             id="details"
+            name="details"
             placeholder="Session details"
             value={details}
             onChange={(e) => setDetails(e.target.value)}
@@ -120,22 +103,25 @@ function UpdateSessionModal({ id }) {
         <div className="form-field">
           <input
             type="date"
-            id="sessionDate"
-            value={sessionDate}
+            id="session_date"
+            name="session_date"
+            value={session_date}
             onChange={(e) => setSessionDate(e.target.value)}
           />
         </div>
         <div className="form-field">
           <input
             type="text"
-            id="sessionType"
-            value={sessionType}
+            id="session_type"
+            name="session_type"
+            placeholder="Session Type"
+            value={session_type}
             onChange={(e) => setSessionType(e.target.value)}
           />
         </div>
         <div className="button-container">
           <button type="submit" className="update-button">
-            Update
+            Create
           </button>
           <button type="button" className="cancel-button" onClick={closeModal}>
             Cancel
@@ -144,6 +130,7 @@ function UpdateSessionModal({ id }) {
       </form>
     </div>
   );
+
 }
 
-export default UpdateSessionModal;
+export default CreateSessionModal;

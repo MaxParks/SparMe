@@ -1,0 +1,46 @@
+.about-modal-content {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+  }
+
+  .about-modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .about-modal-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .about-modal-features {
+    margin-bottom: 20px;
+  }
+
+  .about-modal-features h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .about-modal-features ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+
+  .about-modal-community h3,
+  .about-modal-interface h3,
+  .about-modal-privacy h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .about-modal-summary {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  /* Add more styles as needed */
