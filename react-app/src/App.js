@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Dashboard from './components/Dashboard'
 import LandingPage from './components/LandingPage'
 import GetSession from './components/Sessions/GetSession'
+import GetSessions from './components/Sessions/GetSessions'
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
         </Route>
         <Route path="/sessions/:id">
           <GetSession />
+        </Route>
+        <Route path="/sessions/">
+          <GetSessions />
         </Route>
       </Switch>
     </>

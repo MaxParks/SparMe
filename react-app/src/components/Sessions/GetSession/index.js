@@ -1,30 +1,30 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getSessionThunk } from "../../../store/sessions";
 import OpenModalButton from "../../OpenModalButton";
-import { getGymThunk} from "../../../store/gyms";
-import { getUserById } from "../../../store/session";
-import UpdateSessionModal from "../UpdateSessionModal";
-import DeleteSessionModal from "../DeleteSessionModal"
-import ProfileButton from "../../Navigation/ProfileButton";
 import { useParams } from "react-router-dom";
+import UpdateSessionModal from "../UpdateSessionModal";
+import DeleteSessionModal from "../DeleteSessionModal";
+import ProfileButton from "../../Navigation/ProfileButton";
 import './Session.css';
 
-function Session({ isLoaded }) {
+function Session() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const sessionData = useSelector((state) => state.sessions);
   const sessionUser = useSelector((state) => state.session.user);
 
-  const [modalButtonsVisible, setModalButtonsVisible] = useState(false);
-
-  const userIsOwner = sessionUser.id === sessionData.owner_id;
+  const userIsOwner = sessionUser && sessionData && sessionUser.id === sessionData.owner_id;
 
   useEffect(() => {
     dispatch(getSessionThunk(id));
   }, [dispatch, id]);
+
+  if (!sessionData) {
+    return null; // Render nothing until the session data is loaded
+  }
 
   return (
     <div className="session-container">
@@ -42,13 +42,13 @@ function Session({ isLoaded }) {
                 />
               </li>
               <li>
-              <OpenModalButton
-                buttonText="Delete"
-                modalComponent={<DeleteSessionModal id={id} />}
-                key={`delete-${id}`}
-                className="session"
-              />
-            </li>
+                <OpenModalButton
+                  buttonText="Delete"
+                  modalComponent={<DeleteSessionModal id={id} />}
+                  key={`delete-${id}`}
+                  className="session"
+                />
+              </li>
             </ul>
           )}
         </div>
@@ -57,14 +57,13 @@ function Session({ isLoaded }) {
       <div className="session-details">
         <div>
           <p>Session Details:</p>
-          <p>{sessionData && sessionData.details}</p>
+          <p>{sessionData.details}</p>
         </div>
         <br />
         <div>
           <p>Owner/Partner:</p>
           <p>
-            {sessionData && sessionData.owner_id} ---{" "}
-            {sessionData && sessionData.partner_id}
+            {sessionData.owner_id} --- {sessionData.partner_id}
           </p>
         </div>
       </div>
@@ -72,15 +71,15 @@ function Session({ isLoaded }) {
       <div className="session-info">
         <div>
           <p>Gym:</p>
-          <p>{sessionData && sessionData.gym_id}</p>
+          <p>{sessionData.gym_id}</p>
         </div>
         <div>
           <p>Type:</p>
-          <p>{sessionData && sessionData.session_type}</p>
+          <p>{sessionData.session_type}</p>
         </div>
         <div>
           <p>Session Date:</p>
-          <p>{sessionData && sessionData.session_date}</p>
+          <p>{sessionData.session_date}</p>
         </div>
       </div>
 

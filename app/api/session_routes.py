@@ -37,6 +37,10 @@ def get_session_page():
 
     user = current_user
 
+    # Get all users
+    all_users = User.query.all()
+    users_data = [user.to_dict() for user in all_users]
+
     # Get sparring sessions for the current user
     user_sessions = Session.query.filter(
     (Session.owner_id == user.id) | (Session.partner_id == user.id)).all()
@@ -47,6 +51,7 @@ def get_session_page():
         'firstName': user.firstName,
         'lastName': user.lastName,
         'email': user.email,
+        'allUsers': users_data,
         'sessions': sessions_data
     }
 

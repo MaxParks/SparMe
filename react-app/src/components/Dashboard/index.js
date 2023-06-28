@@ -26,26 +26,25 @@ function Dashboard() {
     greetingMessage = "Welcome back and good afternoon";
   }
 
+  // Filter out past sessions
+  const upcomingSessions = dashboardData.sessions
+    ? Object.values(dashboardData.sessions).filter(
+        (session) => new Date(session.session_date) >= currentDate
+      )
+    : [];
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
         <h1 className="dashboard-title">Dashboard</h1>
+
       </div>
 
       <div className="dashboard-date-container">
-        {/* <h2 className="dashboard-date">
-          {currentDate.toLocaleDateString(undefined, {
-            weekday: "long",
-            month: "long",
-            day: "numeric",
-          })}
-        </h2> */}
         <h3 className="dashboard-greeting">
           {`${greetingMessage}, ${sessionUser.firstName} ${sessionUser.lastName}`}
         </h3>
       </div>
-
-      <br></br>
 
       <div className="dashboard-section-container">
         <div className="dashboard-section">
@@ -56,7 +55,7 @@ function Dashboard() {
             Object.values(dashboardData.allUsers).map((user) => (
               <div key={user.id} className="dashboard-user-item">
                 <div className="dashboard-task-link">
-                  {user.firstName} {user.lastName}
+                  <span className="user-info">{user.firstName}{user.lastName} (ID: {user.id})</span>
                 </div>
               </div>
             ))}
@@ -68,29 +67,26 @@ function Dashboard() {
           <h2 className="dashboard-section-title">Upcoming Spars:</h2>
         </div>
         <div className="dashboard-task-list">
-          {dashboardData.sessions &&
-            Object.values(dashboardData.sessions).map((session) => (
-              <div key={session.id} className="dashboard-upcoming-spars">
-                <Link to={`/sessions/${session.id}`}>
+          {upcomingSessions.map((session) => (
+            <div key={session.id} className="dashboard-upcoming-spars">
+              <Link to={`/sessions/${session.id}`} className="dashboard-session-link">
+                <span className="dashboard-session-info">
                   {session.owner.firstName} {session.owner.lastName} ---{" "}
                   {session.partner.firstName} {session.partner.lastName} ---{" "}
                   {session.gym.name} --- {session.session_type} ---{" "}
                   {session.session_date}
-                </Link>
-              </div>
-            ))}
+                </span>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
 
-
-        <OpenModalButton
-          buttonText="Create a Session"
-          modalComponent={<CreateSessionModal />}
-          className="session"
-        />
-
-      <br />
-
+      <OpenModalButton
+        buttonText="Create a Session"
+        modalComponent={<CreateSessionModal />}
+        className="dashboard-session"
+      />
     </div>
   );
 }

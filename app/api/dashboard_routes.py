@@ -10,7 +10,7 @@ dashboard_routes = Blueprint('dashboard_routes', __name__)
 def get_user_dashboard():
 
     user = current_user
-# hi
+
   # Get all users
     all_users = User.query.all()
     users_data = [user.to_dict() for user in all_users]

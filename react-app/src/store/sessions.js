@@ -118,7 +118,7 @@ export default function sessionsReducer(state = initialState, action){
     case LOAD_SESSIONS:
       return {
         ...state,
-        sessions: action.payload
+        ...action.payload
       };
       case LOAD_SESSION:
       return {
