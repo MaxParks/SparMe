@@ -30,21 +30,20 @@ function Dashboard() {
     <div className="dashboard-container">
       <div className="dashboard-header">
         <h1 className="dashboard-title">Dashboard</h1>
-        <ProfileButton user={sessionUser} className="dashboard-profile-button" />
       </div>
 
-      {/* <div className="dashboard-date-container">
-        <h2 className="dashboard-date">
+      <div className="dashboard-date-container">
+        {/* <h2 className="dashboard-date">
           {currentDate.toLocaleDateString(undefined, {
             weekday: "long",
             month: "long",
             day: "numeric",
           })}
-        </h2>
+        </h2> */}
         <h3 className="dashboard-greeting">
           {`${greetingMessage}, ${sessionUser.firstName} ${sessionUser.lastName}`}
         </h3>
-      </div> */}
+      </div>
 
       <br></br>
 

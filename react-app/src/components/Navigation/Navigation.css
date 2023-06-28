@@ -5,3 +5,62 @@
 .hidden {
   display: none;
 }
+
+.navigation {
+  background-color: #f8f9fa;
+  height: 60px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navigation-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.navigation-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  margin: 150px;
+  padding: 0;
+}
+
+.navigation-item {
+  margin-right: 20px;
+  padding-right: 50px;
+}
+
+.navigation-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.navigation-link:hover {
+  background-color: #eaeaea;
+  color: #555;
+}
+
+.navigation-link.active {
+  background-color: #555;
+  color: #fff;
+}
+
+.profile-button {
+  margin-left: auto;
+}
+
+.profile-button i {
+  font-size: 24px;
+  margin-right: 5px;
+}

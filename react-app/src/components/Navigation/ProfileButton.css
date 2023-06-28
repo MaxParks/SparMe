@@ -1,0 +1,17 @@
+.profile-button {
+    position: relative;
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .hidden {
+    display: none;
+  }

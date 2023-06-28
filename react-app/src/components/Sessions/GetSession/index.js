@@ -52,7 +52,6 @@ function Session({ isLoaded }) {
             </ul>
           )}
         </div>
-        <ProfileButton user={sessionUser} />
       </div>
 
       <div className="session-details">

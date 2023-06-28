@@ -19,25 +19,24 @@ function App() {
 
   return (
     <>
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            {user ? <Redirect to="/user/dashboard/" /> : <LandingPage />}
-            </Route>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path="/user/dashboard/">
-            {user ? <Dashboard /> : <Redirect to="/" />}
-            </Route>
-          <Route path="/sessions/:id">
-              <GetSession />
-            </Route>
-        </Switch>
-      )}
+      <Navigation isLoaded={isLoaded} />
+      <Switch>
+        <Route exact path="/">
+          {user ? <Redirect to="/user/dashboard/" /> : <LandingPage />}
+        </Route>
+        <Route path="/login" >
+          <LoginFormPage />
+        </Route>
+        <Route path="/signup">
+          <SignupFormPage />
+        </Route>
+        <Route exact path="/user/dashboard/">
+          {user ? <Dashboard /> : <Redirect to="/" />}
+        </Route>
+        <Route path="/sessions/:id">
+          <GetSession />
+        </Route>
+      </Switch>
     </>
   );
 }
