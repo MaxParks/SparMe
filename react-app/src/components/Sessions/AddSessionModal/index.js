@@ -130,14 +130,18 @@ function CreateSessionModal(isLoaded) {
           />
         </div>
         <div className="form-field">
-          <input
-            type="text"
+          <select
             id="session_type"
             name="session_type"
-            placeholder="Session Type"
             value={session_type}
             onChange={(e) => setSessionType(e.target.value)}
-          />
+          >
+            <option value = ""> Select Session Type </option>
+            <option value = "Boxing"> Boxing </option>
+            <option value = "MMA"> MMA </option>
+            <option value = "BJJ"> BJJ </option>
+            </select>
+
         </div>
         <div className="button-container">
           <button type="submit" className="update-button">
