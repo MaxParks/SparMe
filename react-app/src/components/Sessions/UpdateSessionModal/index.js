@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { updateSessionThunk, getSessionThunk } from "../../../store/sessions";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function UpdateSessionModal({ id }) {
   const dispatch = useDispatch();
-  const [gymId, setGymId] = useState("");
+  const [gym, setGym] = useState("");
   const [sessionType, setSessionType] = useState("");
   const [sessionDate, setSessionDate] = useState("");
   const [details, setDetails] = useState("");
@@ -15,10 +15,11 @@ function UpdateSessionModal({ id }) {
   const history = useHistory();
 
   const session = useSelector((state) => state.sessions);
+  const allGyms = useSelector((state) => state.dashboard.allGyms);
 
   useEffect(() => {
     if (session) {
-      setGymId(session.gym_id);
+      setGym(session.gym.name);
       setDetails(session.details);
       setSessionType(session.session_type);
       setSessionDate(session.session_date);
@@ -38,8 +39,8 @@ function UpdateSessionModal({ id }) {
     e.preventDefault();
 
     const errors = {};
-    if (!gymId) {
-      errors.gymId = "Gym Id is a required field.";
+    if (!gym) {
+      errors.gym = "Gym  is a required field.";
     }
     if (!details) {
       errors.details = "Details is a required field.";
@@ -59,7 +60,7 @@ function UpdateSessionModal({ id }) {
     setErrors({});
 
     const updatedSession = {
-      gym_id: gymId,
+      gym: gym.id,
       partner_id: session.partner_id, // Retain the original partner ID
       details,
       session_date: sessionDate,
@@ -84,7 +85,7 @@ function UpdateSessionModal({ id }) {
       <h2>Update Session</h2>
       <form onSubmit={handleSubmit}>
         <ul className="error-list">
-          {errors.gymId && <li>{errors.gymId}</li>}
+          {errors.gym && <li>{errors.gym}</li>}
           {errors.details && <li>{errors.details}</li>}
           {errors.sessionDate && <li>{errors.sessionDate}</li>}
           {errors.sessionType && <li>{errors.sessionType}</li>}
@@ -95,16 +96,15 @@ function UpdateSessionModal({ id }) {
           <input
             type="text"
             id="gymId"
-            placeholder="Gym Id"
-            value={gymId}
-            onChange={(e) => setGymId(e.target.value)}
+            placeholder={`Gym: ${session.gym.name}`}
+            disabled
           />
         </div>
         <div className="form-field">
           <input
             type="text"
-            id="partnerId"
-            placeholder={`Partner ID: ${session.partner_id}`}
+            id="partner"
+            placeholder={`Partner: ${session.partner.firstName} ${session.partner.lastName}`}
             disabled
           />
         </div>
@@ -129,6 +129,7 @@ function UpdateSessionModal({ id }) {
           <input
             type="text"
             id="sessionType"
+            placeholder="Session Type"
             value={sessionType}
             onChange={(e) => setSessionType(e.target.value)}
           />

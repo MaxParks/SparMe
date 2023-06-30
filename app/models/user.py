@@ -60,3 +60,16 @@ class User(db.Model, UserMixin):
             'received_messages': [message.id for message in self.received_messages],
             'reviews': [review.id for review in self.user_reviews]
         }
+
+    def to_resource_dict(self):
+        return {
+            'id': self.id,
+            'firstName': self.firstName,
+            'lastName': self.lastName,
+            'email': self.email,
+            'experience': self.experience,
+            'city': self.city,
+            'weight': self.weight,
+            'height': self.height,
+            'created_at': self.created_at.strftime('%m/%d/%Y'),
+        }

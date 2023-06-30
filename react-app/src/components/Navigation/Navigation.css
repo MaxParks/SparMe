@@ -52,7 +52,12 @@
 }
 
 .navigation-link.active {
-  background-color: #555;
+  background-color: black;
+  color: #fff;
+}
+
+.navigation-link {
+  background-color: #8b8383;
   color: #fff;
 }
 

@@ -7,8 +7,8 @@ import { useHistory } from "react-router-dom";
 
 function CreateSessionModal(isLoaded) {
   const dispatch = useDispatch();
-  const [gym_id, setGymId] = useState("");
-  const [partner_id, setPartnerId] = useState("")
+  const [gym, setGym] = useState(null);
+  const [partner, setPartner] = useState(null);
   const [session_type, setSessionType] = useState("");
   const [session_date, setSessionDate] = useState("");
   const [details, setDetails] = useState("");
@@ -16,18 +16,21 @@ function CreateSessionModal(isLoaded) {
   const { closeModal } = useModal();
   const history = useHistory();
 
+  const allUsers = useSelector((state) => state.dashboard.allUsers);
+
+  const allGyms = useSelector((state) => state.dashboard.allGyms);
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const errors = {};
-    if (!gym_id) {
-      errors.gym_id = "Gym Id is a required field.";
+    if (!gym) {
+      errors.gym = "Gym is a required field.";
     }
-    if (!partner_id) {
-        errors.partner_id = "Partner Id is a required field.";
-      }
+    if (!partner) {
+      errors.partner = "Partner is a required field.";
+    }
     if (!details) {
       errors.details = "Details is a required field.";
     }
@@ -46,7 +49,7 @@ function CreateSessionModal(isLoaded) {
     setErrors({});
 
 
-    const data = await dispatch(createSessionThunk(gym_id,partner_id,details,session_date,session_type,));
+    const data = await dispatch(createSessionThunk(gym.id,partner.id,details,session_date,session_type,));
 
     if (Array.isArray(data)) {
       setErrors({ general: data });
@@ -65,7 +68,8 @@ function CreateSessionModal(isLoaded) {
       <form onSubmit={handleSubmit}>
         <ul className="error-list">
           {errors.gym_id && <li>{errors.gym_id}</li>}
-          {errors.partner_id && <li>{errors.partner_id}</li>}
+          {errors.gym && <li>{errors.gym}</li>}
+          {errors.partner && <li>{errors.partner}</li>}
           {errors.details && <li>{errors.details}</li>}
           {errors.session_date && <li>{errors.session_date}</li>}
           {errors.session_type && <li>{errors.session_type}</li>}
@@ -73,23 +77,39 @@ function CreateSessionModal(isLoaded) {
         </ul>
 
         <div className="form-field">
-          <input
-            type="text"
-            id="gym Id"
-            placeholder="Gym Id"
-            value={gym_id}
-            onChange={(e) => setGymId(e.target.value)}
-          />
-        </div>
+            <select
+              id="gym_id"
+              value={gym ? gym.id : ""}
+              onChange={(e) => {
+                const selectedGym = allGyms.find((gym) => gym.id === Number(e.target.value));
+                setGym(selectedGym);
+              }}
+            >
+              <option value="">Select Gym</option>
+              {allGyms.map((gym) => (
+                <option key={gym.id} value={gym.id}>
+                  {gym.name}
+                </option>
+              ))}
+            </select>
+          </div>
         <div className="form-field">
-          <input
-            type="text"
-            id="partner Id"
-            placeholder="Partner Id"
-            value={partner_id}
-            onChange={(e) => setPartnerId(e.target.value)}
-          />
-        </div>
+  <select
+    id="partner_id"
+    value={partner ? partner.id : ""}
+    onChange={(e) => {
+      const selectedPartner = allUsers.find((user) => user.id === Number(e.target.value));
+      setPartner(selectedPartner);
+    }}
+  >
+    <option value="">Select Partner</option>
+    {allUsers.map((user) => (
+      <option key={user.id} value={user.id}>
+        {user.firstName} {user.lastName}
+      </option>
+    ))}
+  </select>
+</div>
         <div className="form-field">
           <input
             type="text"

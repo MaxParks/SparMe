@@ -29,7 +29,7 @@ class Gym(db.Model):
             'martial_art': self.martial_art,
             'created_at': self.created_at.strftime('%m/%d/%Y'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y'),
-            'owner': self.owner.id,
+            'owner': self.owner.to_resource_dict(),
             'user_gyms': [user_gym.id for user_gym in self.user_gyms],
             'sessions': [session.id for session in self.sessions]
         }
