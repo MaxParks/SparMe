@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 
 function UpdateSessionModal({ id }) {
   const dispatch = useDispatch();
-  const [gym, setGym] = useState("");
+  const [gym, setGym] = useState({});
   const [sessionType, setSessionType] = useState("");
   const [sessionDate, setSessionDate] = useState("");
   const [details, setDetails] = useState("");
@@ -19,13 +19,10 @@ function UpdateSessionModal({ id }) {
 
   useEffect(() => {
     if (session) {
-      setGym(session.gym.name);
+      setGym(session.gym);
       setDetails(session.details);
       setSessionType(session.session_type);
       setSessionDate(session.session_date);
-
-      const sessionDateFormatted = new Date(session.session_date).toISOString().split("T")[0];
-      setSessionDate(sessionDateFormatted);
     }
   }, [session]);
 
@@ -60,7 +57,7 @@ function UpdateSessionModal({ id }) {
     setErrors({});
 
     const updatedSession = {
-      gym: gym.id,
+      gym_id: gym && gym.id,
       partner_id: session.partner_id, // Retain the original partner ID
       details,
       session_date: sessionDate,
@@ -119,7 +116,7 @@ function UpdateSessionModal({ id }) {
         </div>
         <div className="form-field">
           <input
-            type="date"
+            type="datetime-local"
             id="sessionDate"
             value={sessionDate}
             onChange={(e) => setSessionDate(e.target.value)}

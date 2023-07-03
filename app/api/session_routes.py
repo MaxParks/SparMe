@@ -77,12 +77,15 @@ def create_session():
         if not partner or not gym:
             return {'errors': ['Invalid partner name or gym name']}, 400
 
+        session_date_str = form.data['session_date']
+        session_date = datetime.strptime(session_date_str, '%Y-%m-%dT%H:%M')
+
         session = Session(
             owner_id=current_user.id,
             partner_id=partner.id,  # Assuming partner.id is the correct field to use
             gym_id=gym.id,  # Assuming gym.id is the correct field to use
             session_type=form.data['session_type'],
-            session_date=form.data['session_date'],
+            session_date=session_date,
             details=form.data['details']
         )
 
@@ -110,7 +113,8 @@ def update_session(id):
 
         session.gym_id = form.data['gym_id']
         session.session_type = form.data['session_type']
-        session.session_date = form.data['session_date']
+        session_date_str = form.data['session_date']
+        session.session_date = datetime.strptime(session_date_str, '%Y-%m-%dT%H:%M')
         session.details = form.data['details']
         session.updated_at = datetime.utcnow()
 

@@ -9,6 +9,18 @@ import DeleteSessionModal from "../DeleteSessionModal";
 import ProfileButton from "../../Navigation/ProfileButton";
 import './Session.css';
 
+function formatDateAndTime(dateString) {
+  const dateObj = new Date(dateString);
+
+  const optionsDate = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const optionsTime = { hour: '2-digit', minute: '2-digit' };
+
+  const formattedDate = dateObj.toLocaleDateString(undefined, optionsDate);
+  const formattedTime = dateObj.toLocaleTimeString(undefined, optionsTime);
+
+  return { formattedDate, formattedTime };
+}
+
 function Session() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -16,6 +28,7 @@ function Session() {
   const [loaded, setLoaded] = useState(false);
   const sessionData = useSelector((state) => state.sessions);
   const sessionUser = useSelector((state) => state.session.user);
+  const { formattedDate, formattedTime } = formatDateAndTime(sessionData.session_date);
 
   const userIsOwner = sessionUser && sessionData && sessionUser.id === sessionData.owner_id;
 
@@ -54,7 +67,7 @@ function Session() {
         </div>
         <div>
           <p>Session Date:</p>
-          <p>{sessionData.session_date}</p>
+          <p>{formattedDate} {formattedTime}</p>
         </div>
       </div>
 

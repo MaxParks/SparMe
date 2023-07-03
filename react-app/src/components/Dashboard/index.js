@@ -8,10 +8,23 @@ import OpenModalButton from "../OpenModalButton";
 import "./Dashboard.css";
 import CreateSessionModal from "../Sessions/AddSessionModal";
 
+function formatDateAndTime(dateString) {
+  const dateObj = new Date(dateString);
+
+  const optionsDate = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const optionsTime = { hour: '2-digit', minute: '2-digit' };
+
+  const formattedDate = dateObj.toLocaleDateString(undefined, optionsDate);
+  const formattedTime = dateObj.toLocaleTimeString(undefined, optionsTime);
+
+  return { formattedDate, formattedTime };
+}
+
 function Dashboard() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const dashboardData = useSelector((state) => state.dashboard);
+
 
   useEffect(() => {
     dispatch(getDashboardThunk());
@@ -67,18 +80,21 @@ function Dashboard() {
           <h2 className="dashboard-section-title">Upcoming Spars:</h2>
         </div>
         <div className="dashboard-task-list">
-          {upcomingSessions.map((session) => (
-            <div key={session.id} className="dashboard-upcoming-spars">
-              <Link to={`/sessions/${session.id}`} className="dashboard-session-link">
-                <span className="dashboard-session-info">
+        {upcomingSessions.map((session) => {
+  const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
+  return (
+    <div key={session.id} className="dashboard-upcoming-spars">
+      <Link to={`/sessions/${session.id}`} className="dashboard-session-link">
+        <span className="dashboard-session-info">
                   {session.owner.firstName} {session.owner.lastName} ---{" "}
                   {session.partner.firstName} {session.partner.lastName} ---{" "}
                   {session.gym.name} --- {session.session_type} ---{" "}
-                  {session.session_date}
+                  {formattedDate}-{formattedTime}
                 </span>
-              </Link>
-            </div>
-          ))}
+      </Link>
+    </div>
+  );
+})}
         </div>
       </div>
 

@@ -48,7 +48,7 @@ function CreateSessionModal(isLoaded) {
 
     setErrors({});
 
-
+    console.log(session_date);
     const data = await dispatch(createSessionThunk(gym.id,partner.id,details,session_date,session_type,));
 
     if (Array.isArray(data)) {
@@ -111,7 +111,7 @@ function CreateSessionModal(isLoaded) {
   </select>
 </div>
         <div className="form-field">
-          <input
+          <textarea
             type="text"
             id="details"
             name="details"
@@ -122,13 +122,14 @@ function CreateSessionModal(isLoaded) {
         </div>
         <div className="form-field">
           <input
-            type="date"
+            type="datetime-local"
             id="session_date"
             name="session_date"
             value={session_date}
             onChange={(e) => setSessionDate(e.target.value)}
           />
         </div>
+
         <div className="form-field">
           <select
             id="session_type"

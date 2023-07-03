@@ -5,11 +5,24 @@ import { Link } from "react-router-dom";
 import { getSessionsThunk } from "../../../store/sessions";
 import './GetSessions.css';
 
+function formatDateAndTime(dateString) {
+  const dateObj = new Date(dateString);
+
+  const optionsDate = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const optionsTime = { hour: '2-digit', minute: '2-digit' };
+
+  const formattedDate = dateObj.toLocaleDateString(undefined, optionsDate);
+  const formattedTime = dateObj.toLocaleTimeString(undefined, optionsTime);
+
+  return { formattedDate, formattedTime };
+}
+
 function Sessions() {
   const dispatch = useDispatch();
 
   const sessionData = useSelector((state) => state.sessions);
   const sessionUser = useSelector((state) => state.session.user);
+
 
   const userIsOwner = sessionUser && sessionData && sessionUser.id === sessionData.owner_id;
 
@@ -35,10 +48,12 @@ function Sessions() {
     <div className="sessions-list">
       <div className="upcoming-sessions">
         <h2 className="section-title">Upcoming Sparring Sessions:</h2>
-        {upcomingSessions.map((session) => (
-          <div key={session.id} className="session-item">
-            <Link to={`/sessions/${session.id}`} className="session-link">
-              <span className="name">
+        {upcomingSessions.map((session) => {
+  const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
+  return (
+    <div key={session.id} className="session-item">
+      <Link to={`/sessions/${session.id}`} className="session-link">
+        <span className="name">
                 {session.owner?.firstName} {session.owner?.lastName}
               </span>{" "}
               ---{" "}
@@ -46,17 +61,20 @@ function Sessions() {
                 {session.partner?.firstName} {session.partner?.lastName}
               </span>{" "}
               --- {session.gym?.name} --- {session.session_type} ---{" "}
-              {session.session_date}
-            </Link>
-          </div>
-        ))}
+              {formattedDate} - {formattedTime}
+      </Link>
+    </div>
+  );
+})}
       </div>
       <div className="previous-sessions">
         <h2 className="section-title">Previous Sparring Sessions:</h2>
-        {previousSessions.map((session) => (
-          <div key={session.id} className="session-item">
-            <Link to={`/sessions/${session.id}`} className="session-link">
-              <span className="name">
+        {previousSessions.map((session) => {
+  const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
+  return (
+    <div key={session.id} className="session-item">
+      <Link to={`/sessions/${session.id}`} className="session-link">
+        <span className="name">
                 {session.owner?.firstName} {session.owner?.lastName}
               </span>{" "}
               ---{" "}
@@ -64,10 +82,11 @@ function Sessions() {
                 {session.partner?.firstName} {session.partner?.lastName}
               </span>{" "}
               --- {session.gym?.name} --- {session.session_type} ---{" "}
-              {session.session_date}
-            </Link>
-          </div>
-        ))}
+              {formattedDate} - {formattedTime}
+      </Link>
+    </div>
+  );
+})}
       </div>
     </div>
   );

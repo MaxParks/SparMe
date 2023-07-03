@@ -30,7 +30,7 @@ class Session(db.Model):
             'partner_id': self.partner_id,
             'gym_id': self.gym_id,
             'session_type': self.session_type,
-            'session_date': self.session_date.strftime('%m/%d/%Y %I:%M:%S %p') if self.session_date else None,
+            'session_date': self.session_date.isoformat() if self.session_date else None,
             'details': self.details,
             'created_at': self.created_at.strftime('%m/%d/%Y') if self.created_at else None,
             'updated_at': self.updated_at.strftime('%m/%d/%Y') if self.updated_at else None,
