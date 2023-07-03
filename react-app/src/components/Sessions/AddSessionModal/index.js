@@ -17,8 +17,10 @@ function CreateSessionModal(isLoaded) {
   const history = useHistory();
 
   const allUsers = useSelector((state) => state.dashboard.allUsers);
-
+  const currentUser = useSelector((state) => state.session.user);
   const allGyms = useSelector((state) => state.dashboard.allGyms);
+
+  const filteredUsers = allUsers.filter((user) => user.id !== currentUser.id);
 
 
   const handleSubmit = async (e) => {
@@ -98,12 +100,12 @@ function CreateSessionModal(isLoaded) {
     id="partner_id"
     value={partner ? partner.id : ""}
     onChange={(e) => {
-      const selectedPartner = allUsers.find((user) => user.id === Number(e.target.value));
+      const selectedPartner = filteredUsers.find((user) => user.id === Number(e.target.value));
       setPartner(selectedPartner);
     }}
   >
     <option value="">Select Partner</option>
-    {allUsers.map((user) => (
+    {filteredUsers.map((user) => (
       <option key={user.id} value={user.id}>
         {user.firstName} {user.lastName}
       </option>

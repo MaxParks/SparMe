@@ -105,6 +105,9 @@ def update_session(id):
     if current_user.id != session.owner_id:
         return {"message": "Unauthorized", "statusCode": 403}, 403
 
+    if session.session_date < datetime.now():
+        return {"message": "Session is in the past and cannot be updated", "statusCode": 400}, 400
+
     form = SessionForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']

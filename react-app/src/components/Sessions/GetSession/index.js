@@ -40,6 +40,10 @@ function Session() {
     return null;
   }
 
+  const currentDate = new Date();
+  const sessionDate = new Date(sessionData.session_date);
+  const isPastSession = sessionDate < currentDate;
+
   return loaded && (
     <div className="session-container">
       <div className="session-details">
@@ -73,7 +77,7 @@ function Session() {
 
       <div className="session-header">
         <div className="session-title">
-          {userIsOwner && (
+          {userIsOwner && !isPastSession && (
             <ul className="dropdown-content">
               <li>
                 <OpenModalButton
