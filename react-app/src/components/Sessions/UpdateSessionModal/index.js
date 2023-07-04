@@ -27,6 +27,7 @@ function UpdateSessionModal({ id }) {
     if (session) {
       setGym(session.gym);
       setDetails(session.details);
+      setSessionType(session.session_type)
       setSessionDate(formatSessionDate(session.session_date));
     }
   }, [session]);

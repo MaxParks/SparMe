@@ -25,7 +25,6 @@ function Dashboard() {
   const sessionUser = useSelector((state) => state.session.user);
   const dashboardData = useSelector((state) => state.dashboard);
 
-
   useEffect(() => {
     dispatch(getDashboardThunk());
   }, [dispatch]);
@@ -50,7 +49,6 @@ function Dashboard() {
     <div className="dashboard-container">
       <div className="dashboard-header">
         <h1 className="dashboard-title">Dashboard</h1>
-
       </div>
 
       <div className="dashboard-date-container">
@@ -67,8 +65,8 @@ function Dashboard() {
           {dashboardData.allUsers &&
             Object.values(dashboardData.allUsers).map((user) => (
               <div key={user.id} className="dashboard-user-item">
-                <div className="dashboard-task-link">
-                  <span className="user-info">{user.firstName}{user.lastName} (ID: {user.id})</span>
+                <div className="dashboard-user-link">
+                  <span className="user-info">{user.firstName} {user.lastName}</span>
                 </div>
               </div>
             ))}
@@ -80,21 +78,21 @@ function Dashboard() {
           <h2 className="dashboard-section-title">Upcoming Spars:</h2>
         </div>
         <div className="dashboard-task-list">
-        {upcomingSessions.map((session) => {
-  const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
-  return (
-    <div key={session.id} className="dashboard-upcoming-spars">
-      <Link to={`/sessions/${session.id}`} className="dashboard-session-link">
-        <span className="dashboard-session-info">
-                  {session.owner.firstName} {session.owner.lastName} ---{" "}
-                  {session.partner.firstName} {session.partner.lastName} ---{" "}
-                  {session.gym.name} --- {session.session_type} ---{" "}
-                  {formattedDate}-{formattedTime}
-                </span>
-      </Link>
-    </div>
-  );
-})}
+          {upcomingSessions.map((session) => {
+            const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
+            return (
+              <div key={session.id} className="dashboard-upcoming-spar">
+                <Link to={`/sessions/${session.id}`} className="dashboard-session-link">
+                  <span className="dashboard-session-info">
+                    {session.owner.firstName} {session.owner.lastName} ---{" "}
+                    {session.partner.firstName} {session.partner.lastName} ---{" "}
+                    {session.gym.name} --- {session.session_type} ---{" "}
+                    {formattedDate}-{formattedTime}
+                  </span>
+                </Link>
+              </div>
+            );
+          })}
         </div>
       </div>
 

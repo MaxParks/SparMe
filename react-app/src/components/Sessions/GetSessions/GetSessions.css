@@ -1,45 +1,49 @@
-.sessions-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    padding: 30px;
-    background-color: grey;
-  }
+.sessions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 30px;
+  background: linear-gradient(to bottom, #701100, #F26249);
+}
 
-  .upcoming-sessions,
-  .previous-sessions {
-    margin-bottom: 20px;
-  }
+.upcoming-sessions,
+.previous-sessions {
+  margin-bottom: 20px;
+}
 
-  .section-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: black;
-  }
+.section-title {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 26px;
+  background-color: grey;
+  color: black;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  .session-item {
-    margin-bottom: 10px;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+.session-item {
+  margin-bottom: 10px;
+  background-color: grey;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  .session-link {
-    text-decoration: none;
-    color: #333;
-    font-size: 20px;
-  }
+.session-link {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
 
-  .session-link:hover {
-    background-color: #e6e6e6;
-    transition: background-color 0.3s ease;
-  }
+.session-link:hover {
+  background-color: #e6e6e6;
+  transition: background-color 0.3s ease;
+}
 
-  .name {
-    font-weight: bold;
-    color: #555;
-  }
+.name {
+  font-weight: bold;
+  color: black;
+}

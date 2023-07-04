@@ -40,8 +40,15 @@ function CreateSessionModal(isLoaded) {
       errors.session_date = "Session date is a required field.";
     }
     if (!session_type) {
-        errors.session_type = "Session type is a required field.";
-      }
+      errors.session_type = "Session type is a required field.";
+    }
+
+    const selectedDate = new Date(session_date);
+    const currentDate = new Date();
+
+    if (selectedDate < currentDate) {
+      errors.session_date = "Please select a future date and time.";
+    }
 
     if (Object.keys(errors).length > 0) {
       setErrors(errors);

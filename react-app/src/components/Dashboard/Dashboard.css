@@ -5,7 +5,7 @@
   justify-content: flex-start;
   min-height: 100vh;
   padding: 30px;
-  background-color: grey;
+  background: linear-gradient(to bottom, #701100, #F26249);
 }
 
 .dashboard-header {
@@ -14,12 +14,11 @@
 }
 
 .dashboard-title {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
   color: black;
   margin: 0;
 }
-
 
 .dashboard-date-container {
   margin-bottom: 20px;
@@ -28,7 +27,7 @@
 .dashboard-date {
   font-size: 18px;
   margin-bottom: 10px;
-  color: black;
+  color: white;
 }
 
 .dashboard-greeting {
@@ -40,50 +39,76 @@
 .dashboard-section-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
 }
 
 .dashboard-section {
-  background-color: #f0f0f0;
-  padding: 10px;
+  background-color: grey;
+  border-radius: 8px;
 }
 
 .dashboard-section-title {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
   color: black;
+  border-radius: 8px;
 }
 
 .dashboard-task-list {
-  padding: 10px;
-
+  padding: 20px;
+  margin: 15px;
+  font-size: 24px;
+  background-color: grey;
+  border-radius: 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-user-item {
   margin-bottom: 10px;
-
+  border-radius: 8px;
 }
 
-.dashboard-task-link {
+.dashboard-user-link {
   font-size: 16px;
-  color: #333;
+  color: #FF9900;
   text-decoration: none;
+  border-radius: 8px;
 }
 
-.dashboard-upcoming-spars {
+.dashboard-upcoming-spar {
   margin-top: 20px;
-  background-color: #fff;
+  background-color: #701100;
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-session-link {
+  font-size: 16px;
+  color: #FF9900;
+  text-decoration: none;
 }
 
 .user-info {
   font-weight: bold;
   color: black;
+  font-size: 20px;
 }
 
 .dashboard-container button {
   font-size: 20px;
   padding: 10px 20px;
+}
+
+.dashboard-task-link:visited,
+.dashboard-task-link:active,
+.dashboard-session-link:visited,
+.dashboard-session-link:active {
+  color: white;
+}
+
+.dashboard-task-link:hover,
+.dashboard-session-link:hover {
+  color: #FF6600;
+  text-decoration: underline;
 }
