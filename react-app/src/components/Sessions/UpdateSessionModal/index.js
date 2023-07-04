@@ -18,26 +18,32 @@ function UpdateSessionModal({ id }) {
   const allGyms = useSelector((state) => state.dashboard.allGyms);
 
   useEffect(() => {
-    if (session) {
-      setGym(session.gym);
-      setDetails(session.details);
-      setSessionType(session.session_type);
-      setSessionDate(session.session_date);
-    }
-  }, [session]);
-
-  useEffect(() => {
     if (!session) {
       dispatch(getSessionThunk(id));
     }
   }, [dispatch, id, session]);
+
+  useEffect(() => {
+    if (session) {
+      setGym(session.gym);
+      setDetails(session.details);
+      setSessionDate(formatSessionDate(session.session_date));
+    }
+  }, [session]);
+
+  const formatSessionDate = (dateString) => {
+    const date = new Date(dateString);
+    date.setHours(date.getHours() - 7);
+    const formattedDate = date.toISOString().slice(0, 16);
+    return formattedDate;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const errors = {};
     if (!gym) {
-      errors.gym = "Gym  is a required field.";
+      errors.gym = "Gym is a required field.";
     }
     if (!details) {
       errors.details = "Details is a required field.";
@@ -49,6 +55,13 @@ function UpdateSessionModal({ id }) {
       errors.sessionType = "Session type is a required field.";
     }
 
+    const selectedDate = new Date(sessionDate);
+    const currentDate = new Date();
+
+    if (selectedDate < currentDate) {
+      errors.sessionDate = "Please select a future date and time.";
+    }
+
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
       return;
@@ -58,7 +71,7 @@ function UpdateSessionModal({ id }) {
 
     const updatedSession = {
       gym_id: gym && gym.id,
-      partner_id: session.partner_id, // Retain the original partner ID
+      partner_id: session.partner_id,
       details,
       session_date: sessionDate,
       session_type: sessionType,
@@ -106,7 +119,7 @@ function UpdateSessionModal({ id }) {
           />
         </div>
         <div className="form-field">
-          <input
+          <textarea
             type="text"
             id="details"
             placeholder="Session details"
