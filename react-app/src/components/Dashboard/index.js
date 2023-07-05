@@ -48,14 +48,12 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h1 className="dashboard-title">Dashboard</h1>
+        <h1 className="dashboard-title">Dashboard
+        <br></br>
+        {/* {`${greetingMessage}, ${sessionUser.firstName} ${sessionUser.lastName}`} */}
+        </h1>
       </div>
 
-      <div className="dashboard-date-container">
-        <h3 className="dashboard-greeting">
-          {`${greetingMessage}, ${sessionUser.firstName} ${sessionUser.lastName}`}
-        </h3>
-      </div>
 
       <div className="dashboard-section-container">
         <div className="dashboard-section">

@@ -27,7 +27,7 @@ def get_gym(id):
 
     return jsonify(gym.to_dict()), 200
 
-# Get all gyms owned or associated with the current user
+# Get all gyms and also all owned or associated with the current user
 @gym_routes.route('/', methods=['GET'])
 @login_required
 def get_user_gyms():
@@ -36,12 +36,16 @@ def get_user_gyms():
     owned_gyms = Gym.query.filter_by(owner_id=user.id).all()
     associated_gyms = Gym.query.join(Gym.user_gyms).filter_by(user_id=user.id).all()
 
+    all_gyms = Gym.query.all()
+
     owned_gyms_data = [gym.to_dict() for gym in owned_gyms]
     associated_gyms_data = [gym.to_dict() for gym in associated_gyms]
+    all_gyms_data = [gym.to_dict() for gym in all_gyms]
 
     gyms_data = {
         'owned_gyms': owned_gyms_data,
-        'associated_gyms': associated_gyms_data
+        'associated_gyms': associated_gyms_data,
+        'gyms': all_gyms_data
     }
 
     return jsonify(gyms_data), 200

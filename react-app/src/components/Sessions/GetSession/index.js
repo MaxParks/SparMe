@@ -100,7 +100,7 @@ function Session() {
                     modalComponent={<DeleteSessionModal id={id} />}
                     key={`delete-${id}`}
                     className="session-button"
-                  />
+                 />
                 </li>
               </ul>
             )}

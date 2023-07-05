@@ -21,9 +21,12 @@ export const addGym = data => ({
   payload: data
 });
 
-export const updateGym = data => ({
+export const updateGym = (gymId, data) => ({
   type: UPDATE_GYM,
-  payload: data
+  data: {
+    id: gymId,
+    ...data,
+  },
 });
 
 export const deleteGym = id => ({
@@ -52,7 +55,14 @@ export const getGymThunk = id => async dispatch => {
   }
 };
 
-export const createGymThunk = gymData => async dispatch => {
+export const createGymThunk = (name, city, martial_art) => async dispatch => {
+
+  const gymData = {
+    name,
+    city,
+    martial_art
+  };
+
   const response = await fetch('/api/gyms/', {
     method: 'POST',
     headers: {
@@ -68,8 +78,8 @@ export const createGymThunk = gymData => async dispatch => {
   }
 };
 
-export const updateGymThunk = (id, gymData) => async dispatch => {
-  const response = await fetch(`/api/gyms/${id}`, {
+export const updateGymThunk = (gymId, gymData) => async dispatch => {
+  const response = await fetch(`/api/gyms/${gymId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -79,7 +89,7 @@ export const updateGymThunk = (id, gymData) => async dispatch => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(updateGym(data));
+    dispatch(updateGym(gymId,data));
     return data;
   }
 };
@@ -95,10 +105,7 @@ export const deleteGymThunk = id => async dispatch => {
 };
 
 // Initial state
-const initialState = {
-  gyms: [],
-  gym: null
-};
+const initialState = {};
 
 // Reducer
 export default function gymsReducer(state = initialState, action){
@@ -106,30 +113,29 @@ export default function gymsReducer(state = initialState, action){
     case LOAD_GYMS:
       return {
         ...state,
-        gyms: action.payload
+        ...action.payload
       };
     case LOAD_GYM:
       return {
         ...state,
-        gym: action.payload
+        ...action.payload
       };
     case ADD_GYM:
       return {
         ...state,
-        gyms: [...state.gyms, action.payload]
+        gyms: {
+          [action.payload.id]: action.payload,
+        }
       };
     case UPDATE_GYM:
       return {
         ...state,
-        gyms: state.gyms.map(gym =>
-          gym.id === action.payload.id ? action.payload : gym
-        )
+        [action.data.id]: action.data,
       };
     case DELETE_GYM:
-      return {
-        ...state,
-        gyms: state.gyms.filter(gym => gym.id !== action.payload)
-      };
+      const newState = { ...state };
+      delete newState[action.payload];
+      return newState;
     default:
       return state;
   }

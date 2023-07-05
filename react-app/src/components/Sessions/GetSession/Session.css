@@ -6,6 +6,7 @@
   min-height: 100vh;
   padding: 30px;
   background: linear-gradient(to bottom, #701100, #F26249);
+  font-family: 'Roboto', sans-serif; /* Apply a custom font or choose one from Google Fonts */
 }
 
 .session-header {
@@ -16,6 +17,9 @@
   margin: 0;
   font-size: 24px;
   color: #333;
+  font-family: 'Pacifico', cursive; /* Apply a cool cursive font */
+  /* Add any additional text effect styles */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .session-details {
@@ -33,13 +37,18 @@
   font-weight: bold;
   color: black;
   border-radius: 8px;
+  font-family: 'Montserrat', sans-serif; /* Apply a modern sans-serif font */
+  /* Add any additional text effect styles */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .session-details p.session-details-content {
   margin: 0;
-  font-size: 22px;
+  text-decoration: none;
   color: black;
-  border-radius: 8px;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .session-info {
@@ -47,6 +56,11 @@
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
   width: 40%;
+  text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .session-info p.session-info-title {
@@ -55,6 +69,9 @@
   font-weight: bold;
   color: black;
   border-radius: 8px;
+  font-family: 'Montserrat', sans-serif; /* Apply a modern sans-serif font */
+  /* Add any additional text effect styles */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .session-info p.session-info-content {
@@ -64,6 +81,7 @@
   background-color: grey;
   padding: 20px;
   border-radius: 8px;
+  font-family: 'Montserrat', sans-serif; /* Apply a modern sans-serif font */
 }
 
 .dropdown-content {
@@ -75,14 +93,17 @@
 
 .dropdown-content li {
   margin-right: 10px;
-
 }
 
 .dropdown-content li button {
   font-size: 20px;
   padding: 10px 20px;
+  font-family: 'Montserrat', sans-serif; /* Apply a modern sans-serif font */
 }
 
-.session-info-title{
- padding: 20px;
+.session-info-title {
+  padding: 20px;
+  font-family: 'Pacifico', cursive; /* Apply a cool cursive font */
+  /* Add any additional text effect styles */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
