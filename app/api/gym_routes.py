@@ -25,7 +25,9 @@ def get_gym(id):
     if not gym:
         return {"message": "Gym not found", "statusCode": 404}, 404
 
-    return jsonify(gym.to_dict()), 200
+    gym_data = gym.to_dict()
+
+    return jsonify(gym_data), 200
 
 # Get all gyms and also all owned or associated with the current user
 @gym_routes.route('/', methods=['GET'])

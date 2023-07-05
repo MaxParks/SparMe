@@ -1,0 +1,43 @@
+.gym-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 30px;
+    background: linear-gradient(to bottom, #701100, #F26249);
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .gym-item1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    display: grid;
+    padding: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+
+  .gym-title {
+    color: black;
+    font-family: 'Pacifico', cursive;
+    margin: 0;
+    font-weight: bold;
+    border-radius: 8px;
+    font-size: 24px;
+    background-color: grey;
+    padding: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+
+  }
+
+  .gym-info {
+    background-color: grey;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+  }

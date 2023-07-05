@@ -10,6 +10,7 @@ import LandingPage from './components/LandingPage'
 import GetSession from './components/Sessions/GetSession'
 import GetSessions from './components/Sessions/GetSessions'
 import GetGyms from './components/Gyms/GetGyms'
+import GetGym from './components/Gyms/GetGym'
 
 function App() {
   const dispatch = useDispatch();
@@ -41,9 +42,13 @@ function App() {
         <Route path="/sessions/">
           <GetSessions />
         </Route>
+        <Route path="/gyms/:id">
+          <GetGym />
+        </Route>
         <Route path="/gyms/">
           <GetGyms />
         </Route>
+
       </Switch>
     </>
   );
