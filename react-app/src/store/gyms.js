@@ -105,7 +105,9 @@ export const deleteGymThunk = id => async dispatch => {
 };
 
 // Initial state
-const initialState = {};
+const initialState = {
+  gyms: [],
+};
 
 // Reducer
 export default function gymsReducer(state = initialState, action){
@@ -121,11 +123,9 @@ export default function gymsReducer(state = initialState, action){
         ...action.payload
       };
     case ADD_GYM:
-      return {
+    return {
         ...state,
-        gyms: {
-          [action.payload.id]: action.payload,
-        }
+        gyms: [...state.gyms, action.payload],
       };
     case UPDATE_GYM:
       return {

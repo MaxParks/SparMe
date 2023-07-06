@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getGymsThunk } from "../../../store/gyms";
 import './GetGyms.css'
+import OpenModalButton from "../../OpenModalButton";
+import CreateGymModal from "../AddGymModal";
 
 function Gyms() {
   const dispatch = useDispatch();
@@ -31,6 +33,11 @@ function Gyms() {
 
   return (
     <div className="gyms-container">
+        <OpenModalButton
+        buttonText="Create a Gym"
+        modalComponent={<CreateGymModal />}
+        className="session-button"
+      />
       <div className="user-gyms">
         <h2 className="section-title">My Gyms:</h2>
         {userGyms.map((gym) => (

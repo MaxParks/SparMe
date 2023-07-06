@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getGymThunk } from "../../../store/gyms";
 import OpenModalButton from "../../OpenModalButton";
-// import UpdateSessionModal from "../UpdateSessionModal";
-// import DeleteSessionModal from "../DeleteSessionModal";
+import UpdateGymModal from "../UpdateGymModal";
+import DeleteGymModal from "../DeleteGymModal";
 import "./Gym.css";
 
 function Gym() {
@@ -42,12 +42,12 @@ function Gym() {
           <p className="gym-title">Martial Art:</p>
           <p className="gym-info">{gymData.martial_art}</p>
         </div>
-        {/* {sessionUser && (
+        {userIsOwner && (
           <ul className="dropdown-content">
             <li>
               <OpenModalButton
                 buttonText="Update"
-                modalComponent={<UpdateSessionModal id={id} />}
+                modalComponent={<UpdateGymModal id={id} />}
                 key={`update-${id}`}
                 className="session-button"
               />
@@ -55,13 +55,13 @@ function Gym() {
             <li>
               <OpenModalButton
                 buttonText="Delete"
-                modalComponent={<DeleteSessionModal id={id} />}
+                modalComponent={<DeleteGymModal id={id} />}
                 key={`delete-${id}`}
                 className="session-button"
               />
             </li>
           </ul>
-        )} */}
+        )}
       </div>
     )
   );

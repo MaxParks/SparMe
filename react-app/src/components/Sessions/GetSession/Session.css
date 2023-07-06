@@ -6,7 +6,7 @@
   min-height: 100vh;
   padding: 30px;
   background: linear-gradient(to bottom, #701100, #F26249);
-  font-family: 'Roboto', sans-serif; /* Apply a custom font or choose one from Google Fonts */
+  font-family: 'Roboto', sans-serif;
 }
 
 .session-header {
@@ -17,8 +17,7 @@
   margin: 0;
   font-size: 24px;
   color: #333;
-  font-family: 'Pacifico', cursive; /* Apply a cool cursive font */
-  /* Add any additional text effect styles */
+  font-family: 'Pacifico', cursive;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -37,8 +36,7 @@
   font-weight: bold;
   color: black;
   border-radius: 8px;
-  font-family: 'Montserrat', sans-serif; /* Apply a modern sans-serif font */
-  /* Add any additional text effect styles */
+  font-family: 'Montserrat', sans-serif;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -69,8 +67,7 @@
   font-weight: bold;
   color: black;
   border-radius: 8px;
-  font-family: 'Montserrat', sans-serif; /* Apply a modern sans-serif font */
-  /* Add any additional text effect styles */
+  font-family: 'Montserrat', sans-serif;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -81,7 +78,7 @@
   background-color: grey;
   padding: 20px;
   border-radius: 8px;
-  font-family: 'Montserrat', sans-serif; /* Apply a modern sans-serif font */
+  font-family: 'Montserrat', sans-serif;
 }
 
 .dropdown-content {
@@ -98,12 +95,11 @@
 .dropdown-content li button {
   font-size: 20px;
   padding: 10px 20px;
-  font-family: 'Montserrat', sans-serif; /* Apply a modern sans-serif font */
+  font-family: 'Montserrat', sans-serif;
 }
 
 .session-info-title {
   padding: 20px;
-  font-family: 'Pacifico', cursive; /* Apply a cool cursive font */
-  /* Add any additional text effect styles */
+  font-family: 'Pacifico', cursive;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }

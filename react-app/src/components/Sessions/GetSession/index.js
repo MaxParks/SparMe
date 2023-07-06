@@ -6,7 +6,6 @@ import OpenModalButton from "../../OpenModalButton";
 import { useParams } from "react-router-dom";
 import UpdateSessionModal from "../UpdateSessionModal";
 import DeleteSessionModal from "../DeleteSessionModal";
-import ProfileButton from "../../Navigation/ProfileButton";
 import "./Session.css";
 
 function formatDateAndTime(dateString) {
