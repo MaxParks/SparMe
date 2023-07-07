@@ -102,7 +102,7 @@ function SignupFormModal() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="experience">Experience</label>
+          <label htmlFor="experience">Experience (in years)</label>
           <input
             type="text"
             id="experience"
@@ -124,7 +124,7 @@ function SignupFormModal() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="weight">Weight</label>
+          <label htmlFor="weight">Weight (in pounds)</label>
           <input
             type="text"
             id="weight"
@@ -135,7 +135,7 @@ function SignupFormModal() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="height">Height</label>
+          <label htmlFor="height">Height (feet.inches)</label>
           <input
             type="text"
             id="height"

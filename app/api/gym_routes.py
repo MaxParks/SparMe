@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, User, Session, Gym
+from app.models import db, User, Session, Gym, UserGym
 from datetime import datetime
 from app.forms import GymForm
 
@@ -26,8 +26,18 @@ def get_gym(id):
         return {"message": "Gym not found", "statusCode": 404}, 404
 
     gym_data = gym.to_dict()
+    members = [user_gym.to_dict() for user_gym in gym.user_gyms]
+
+    # Check if the current user is the owner of the gym
+    if current_user.id == gym.owner_id:
+        owner_data = current_user.to_dict()
+        owner_data['is_owner'] = True
+        members.append(owner_data)
+
+    gym_data['members'] = members
 
     return jsonify(gym_data), 200
+
 
 # Get all gyms and also all owned or associated with the current user
 @gym_routes.route('/', methods=['GET'])
@@ -52,6 +62,7 @@ def get_user_gyms():
 
     return jsonify(gyms_data), 200
 
+
 # Create a Gym
 @gym_routes.route('/', methods=['POST'])
 @login_required
@@ -70,6 +81,35 @@ def create_gym():
         db.session.commit()
         return jsonify(gym.to_dict()), 201
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@gym_routes.route('/join_gym', methods=['POST'])
+@login_required
+def join_gym():
+    # Retrieve the user ID and gym ID from the request
+        user_id = current_user.id
+        gym_id = request.json['gym_id']
+
+        # Retrieve the user and gym objects from the database
+        user = User.query.get(user_id)
+        gym = Gym.query.get(gym_id)
+
+        if not gym:
+            return {"message": "Gym not found", "statusCode": 404}, 404
+
+        # Check if the user is already associated with the gym
+        if UserGym.query.filter_by(user_id=user_id, gym_id=gym_id).first():
+            return {"message": "User is already associated with the gym", "statusCode": 400}, 400
+
+        # Create a new UserGym object and associate the user and gym
+        user_gym = UserGym(user_id=user_id, gym_id=gym_id)
+
+        # Save the UserGym object to the database
+        db.session.add(user_gym)
+        db.session.commit()
+
+        return {"message": "Successfully joined the gym", "statusCode": 200}, 200
+
+
 
 # Update a Gym
 @gym_routes.route('/<int:id>', methods=['PUT'])
