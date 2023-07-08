@@ -4,8 +4,9 @@ const LOAD_GYM = 'gym/loadGym';
 const ADD_GYM = 'gyms/addGym';
 const UPDATE_GYM = 'gyms/updateGym';
 const DELETE_GYM = 'gyms/deleteGym';
-const JOIN_GYM = 'gyms/joinGym'; // Add JOIN_GYM constant
+const JOIN_GYM = 'gyms/joinGym';
 const LOAD_GYM_MEMBERS = 'gyms/LOAD_GYM_MEMBERS';
+const LOAD_GYM_SESSIONS = 'gyms/LOAD_GYM_SESSIONS';
 
 // Action creators
 export const loadGyms = data => ({
@@ -40,13 +41,21 @@ export const deleteGym = id => ({
 export const joinGym = data => ({
   type: JOIN_GYM,
   payload: data
-}); // Add joinGym action creator
+});
 
 export const loadGymMembers = (gymId, members) => ({
   type: LOAD_GYM_MEMBERS,
   payload: {
     gymId,
     members,
+  },
+});
+
+export const loadGymSessions = (gymId, sessions) => ({
+  type: LOAD_GYM_SESSIONS,
+  payload: {
+    gymId,
+    sessions,
   },
 });
 
@@ -121,12 +130,12 @@ export const deleteGymThunk = id => async dispatch => {
 };
 
 export const joinGymThunk = id => async dispatch => {
-  const response = await fetch(`/api/gyms/join_gym`, {  // Use the correct API route
+  const response = await fetch(`/api/gyms/join_gym`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ gym_id: id })  // Pass the gym ID in the request body
+    body: JSON.stringify({ gym_id: id })
   });
 
   if (response.ok) {
@@ -144,7 +153,22 @@ export const getGymMemberThunk = (id) => async (dispatch) => {
     }
     const data = await response.json();
     dispatch(loadGym(data));
-    dispatch(loadGymMembers(data.id, data.members)); // Dispatch the new action to load gym members
+    dispatch(loadGymMembers(data.id, data.members));
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getGymSessionThunk = (id) => async (dispatch) => {
+  try {
+    const response = await fetch(`/api/gyms/${id}`);
+    if (!response.ok) {
+      throw new Error('Failed to get gym');
+    }
+    const data = await response.json();
+    dispatch(loadGym(data));
+    dispatch(loadGymSessions(data.id, data.sessions));
     return data;
   } catch (error) {
     console.error(error);
@@ -196,6 +220,14 @@ export default function gymsReducer(state = initialState, action) {
         [action.payload.gymId]: {
           ...state[action.payload.gymId],
           members: action.payload.members,
+        },
+      };
+      case LOAD_GYM_SESSIONS:
+      return {
+        ...state,
+        [action.payload.gymId]: {
+          ...state[action.payload.gymId],
+          sessions: action.payload.sessions,
         },
       };
     default:

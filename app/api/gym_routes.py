@@ -27,6 +27,7 @@ def get_gym(id):
 
     gym_data = gym.to_dict()
     members = [user_gym.to_dict() for user_gym in gym.user_gyms]
+    sessions = [sessions.to_dict() for sessions in gym.sessions]
 
     # Check if the current user is the owner of the gym
     if current_user.id == gym.owner_id:
@@ -35,6 +36,7 @@ def get_gym(id):
         members.append(owner_data)
 
     gym_data['members'] = members
+    gym_data['sessions'] = sessions
 
     return jsonify(gym_data), 200
 
