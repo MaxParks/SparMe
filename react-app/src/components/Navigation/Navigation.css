@@ -7,10 +7,11 @@
 }
 
 .navigation {
-  background-color: rgb(63, 4, 4);
+  background-color: gray;
   height: 60px;
   width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 .navigation-container {
@@ -57,7 +58,7 @@
 }
 
 .navigation-link {
-  background-color: #8b8383;
+  background-color: #413e3e;
   color: #fff;
 }
 
