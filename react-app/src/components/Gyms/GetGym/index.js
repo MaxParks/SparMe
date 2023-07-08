@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import { getGymThunk, joinGymThunk } from "../../../store/gyms";
+import { getGymThunk, joinGymThunk, leaveGymThunk } from "../../../store/gyms";
 import OpenModalButton from "../../OpenModalButton";
 import UpdateGymModal from "../UpdateGymModal";
 import DeleteGymModal from "../DeleteGymModal";
@@ -59,6 +59,11 @@ function Gym() {
     }
   };
 
+  const leaveGym = async () => {
+    await dispatch(leaveGymThunk(id));
+    history.push(`/gyms/`);
+  };
+
   if (!gymData) {
     return <div>Loading...</div>;
   }
@@ -85,6 +90,12 @@ function Gym() {
       {!userIsOwner && !userIsMember && (
         <button className="join-session-button" onClick={joinGym}>
           Join Gym
+        </button>
+      )}
+      <br></br>
+      {!userIsOwner &&  (
+        <button className="leave-gym-button" onClick={leaveGym}>
+          Leave Gym
         </button>
       )}
       {userIsOwner && (

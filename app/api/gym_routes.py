@@ -84,6 +84,7 @@ def create_gym():
         return jsonify(gym.to_dict()), 201
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
+#Join Gym
 @gym_routes.route('/join_gym', methods=['POST'])
 @login_required
 def join_gym():
@@ -110,6 +111,27 @@ def join_gym():
         db.session.commit()
 
         return {"message": "Successfully joined the gym", "statusCode": 200}, 200
+
+# Leave Gym
+@gym_routes.route('/leave_gym', methods=['POST'])
+@login_required
+def leave_gym():
+    user_id = current_user.id
+    gym_id = request.json['gym_id']
+
+    user_gym = UserGym.query.filter_by(user_id=user_id, gym_id=gym_id).first()
+
+    if not user_gym:
+        return {"message": "User is not associated with the gym", "statusCode": 400}, 400
+
+    if user_gym.gym.owner_id == user_id:
+        return {"message": "Owners cannot leave their own gym", "statusCode": 400}, 400
+
+    db.session.delete(user_gym)
+    db.session.commit()
+
+    return {"message": "Successfully left the gym", "statusCode": 200}, 200
+
 
 
 

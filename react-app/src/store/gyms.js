@@ -4,6 +4,7 @@ const LOAD_GYM = 'gym/loadGym';
 const ADD_GYM = 'gyms/addGym';
 const UPDATE_GYM = 'gyms/updateGym';
 const DELETE_GYM = 'gyms/deleteGym';
+const LEAVE_GYM = 'gyms/leaveGym';
 const JOIN_GYM = 'gyms/joinGym';
 const LOAD_GYM_MEMBERS = 'gyms/LOAD_GYM_MEMBERS';
 const LOAD_GYM_SESSIONS = 'gyms/LOAD_GYM_SESSIONS';
@@ -40,6 +41,11 @@ export const deleteGym = id => ({
 
 export const joinGym = data => ({
   type: JOIN_GYM,
+  payload: data
+});
+
+export const leaveGym = data => ({
+  type: LEAVE_GYM,
   payload: data
 });
 
@@ -145,6 +151,22 @@ export const joinGymThunk = id => async dispatch => {
   }
 };
 
+export const leaveGymThunk = id => async dispatch => {
+  const response = await fetch(`/api/gyms/leave_gym`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ gym_id: id })
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(leaveGym(data));
+    return data;
+  }
+};
+
 export const getGymMemberThunk = (id) => async (dispatch) => {
   try {
     const response = await fetch(`/api/gyms/${id}`);
@@ -213,6 +235,11 @@ export default function gymsReducer(state = initialState, action) {
       return {
         ...state,
         userGyms: [...state.userGyms, action.payload]
+      };
+    case LEAVE_GYM:
+      return {
+        ...state,
+        userGyms: state.userGyms.filter(gym => gym.id !== action.payload.gym_id)
       };
     case LOAD_GYM_MEMBERS:
       return {
