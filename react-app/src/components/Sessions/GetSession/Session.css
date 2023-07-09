@@ -5,7 +5,7 @@
   justify-content: flex-start;
   min-height: 100vh;
   padding: 30px;
-  background: linear-gradient(to bottom, #701100, #F26249);
+  background: rgb(94, 6, 6);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -22,6 +22,7 @@
 }
 
 .session-details {
+  border: 2px solid white;
   width: 30%;
   margin-bottom: 20px;
   background-color: grey;
@@ -50,6 +51,9 @@
 }
 
 .session-info {
+  border: 2px solid white;
+  background-color: grey;
+  border-radius: 8px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
@@ -98,7 +102,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.session-info-title {
+.session-info-title1 {
   font-size: 30px;
   padding: 10px;
   font-family: 'Pacifico', cursive;

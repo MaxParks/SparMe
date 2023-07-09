@@ -66,15 +66,15 @@ function Session() {
 
         <div className="session-info">
           <div>
-            <p className="session-info-title">Gym:</p>
+            <p className="session-info-title1">Gym:</p>
             <p className="session-info-content">{sessionData.gym.name}</p>
           </div>
           <div>
-            <p className="session-info-title">Type:</p>
+            <p className="session-info-title1">Type:</p>
             <p className="session-info-content">{sessionData.session_type}</p>
           </div>
           <div>
-            <p className="session-info-title">Session Date:</p>
+            <p className="session-info-title1">Session Date:</p>
             <p className="session-info-content">
               {formattedDate} {formattedTime}
             </p>

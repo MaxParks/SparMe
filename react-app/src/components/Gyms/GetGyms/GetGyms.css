@@ -5,7 +5,7 @@
     justify-content: flex-start;
     min-height: 100vh;
     padding: 30px;
-    background: linear-gradient(to bottom, #701100, #F26249);
+    background: rgb(94, 6, 6);
     font-family: 'Roboto', sans-serif;
   }
 
@@ -28,6 +28,7 @@
   }
 
   .gym-item {
+    border: 2px solid black;
     margin-bottom: 10px;
     background-color: grey;
     padding: 10px;
