@@ -27,12 +27,6 @@ function App() {
         <Route exact path="/">
           {user ? <Redirect to="/user/dashboard/" /> : <LandingPage />}
         </Route>
-        <Route path="/login" >
-          <LoginFormPage />
-        </Route>
-        <Route path="/signup">
-          <SignupFormPage />
-        </Route>
         <Route exact path="/user/dashboard/">
           {user ? <Dashboard /> : <Redirect to="/" />}
         </Route>

@@ -33,6 +33,11 @@ function Gyms() {
 
   return (
     <div className="gyms-container">
+      <img
+        className="background-image"
+        src={require("./boxing gym.jpg").default}
+        alt="Background"
+      />
         <OpenModalButton
         buttonText="Create a Gym"
         modalComponent={<CreateGymModal />}

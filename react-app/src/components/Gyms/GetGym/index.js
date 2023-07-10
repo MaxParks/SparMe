@@ -70,6 +70,11 @@ function Gym() {
 
   return (
     <div className="session-container">
+      <img
+        className="background-image"
+        src={require("./boxing gym.jpg").default}
+        alt="Background"
+      />
       <div className="session-details">
         <div>
           <p className="session-details-title">Gym:</p>

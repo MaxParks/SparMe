@@ -47,6 +47,11 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
+      <img
+        className="background-image"
+        src={require("./boxing background.jpg").default}
+        alt="Background"
+      />
       <div className="dashboard-header">
         <h1 className="dashboard-title">Dashboard
         <br></br>

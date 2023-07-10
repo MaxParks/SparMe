@@ -49,6 +49,11 @@ function Session() {
   return (
     loaded && (
       <div className="session-container">
+        <img
+        className="background-image"
+        src={require("./mma gloves.jpg").default}
+        alt="Background"
+      />
         <div className="session-details">
           <div>
             <p className="session-details-title">Session Details:</p>

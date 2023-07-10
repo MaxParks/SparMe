@@ -45,6 +45,11 @@ function Sessions() {
 
   return (
     <div className="sessions-container">
+      <img
+        className="background-image"
+        src={require("./mma gloves.jpg").default}
+        alt="Background"
+      />
       <div className="upcoming-sessions">
         <h2 className="section-title">Upcoming Sparring Sessions:</h2>
         {upcomingSessions.map((session) => {
