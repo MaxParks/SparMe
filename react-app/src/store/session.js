@@ -109,15 +109,15 @@ export const signUp = (firstName, lastName, email, password, experience, city, w
 		const data = await response.json();
 		dispatch(setUser(data));
 		return null;
-	} else if (response.status < 500) {
+	} else {
 		const data = await response.json();
 		if (data.errors) {
 			return data.errors;
+		} else {
+			return ["An error occurred. Please try again."];
 		}
-	} else {
-		return ["An error occurred. Please try again."];
 	}
-};
+}
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
