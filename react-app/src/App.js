@@ -42,7 +42,9 @@ function App() {
         <Route path="/gyms/">
           <GetGyms />
         </Route>
-
+        <Route path="*">
+          {user ? <Redirect to="/user/dashboard/" /> : <Redirect to="/" />}
+        </Route>
       </Switch>
     </>
   );
