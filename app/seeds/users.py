@@ -12,8 +12,8 @@ def seed_users():
         password='password',
         experience='3',
         city='New York',
-        weight=180.5,
-        height= 5.11,
+        weight=180,
+        height= 71,
         created_at=datetime.utcnow()
         )
 
@@ -24,8 +24,8 @@ def seed_users():
         password='password',
         experience=2,
         city='Los Angeles',
-        weight=160.2,
-        height=5.7,
+        weight=160,
+        height=67,
         created_at=datetime.utcnow()
     )
 
@@ -37,7 +37,7 @@ def seed_users():
         experience=4,
         city='Chicago',
         weight=200.0,
-        height=6.0,
+        height=65,
         created_at=datetime.utcnow()
     )
 
@@ -48,8 +48,44 @@ def seed_users():
         password='password',
         experience=1,
         city='Agoura Hills',
-        weight=130.0,
-        height=5.7,
+        weight=130,
+        height=73,
+        created_at=datetime.utcnow()
+    )
+
+    charlie = User(
+        firstName='Charlie',
+        lastName='Chaplin',
+        email='charlie@aa.io',
+        password='password',
+        experience=5,
+        city='London',
+        weight=170,
+        height=67,
+        created_at=datetime.utcnow()
+    )
+
+    david = User(
+        firstName='David',
+        lastName='Copperfield',
+        email='david@aa.io',
+        password='password',
+        experience=3,
+        city='Las Vegas',
+        weight=160,
+        height=70,
+        created_at=datetime.utcnow()
+    )
+
+    elizabeth = User(
+        firstName='Elizabeth',
+        lastName='Queen',
+        email='elizabeth@aa.io',
+        password='password',
+        experience=1,
+        city='London',
+        weight=150,
+        height=65,
         created_at=datetime.utcnow()
     )
 
@@ -57,6 +93,9 @@ def seed_users():
     db.session.add(marnie)
     db.session.add(alice)
     db.session.add(bob)
+    db.session.add(charlie)
+    db.session.add(david)
+    db.session.add(elizabeth)
     db.session.commit()
 
 

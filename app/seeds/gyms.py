@@ -6,16 +6,16 @@ from datetime import datetime
 def seed_gyms():
     gym1 = Gym(
         owner=User.query.filter_by(email='demo@aa.io').first(),
-        name='Gym A',
+        name='Gracie Barra New York',
         city='New York',
-        martial_art='MMA',
+        martial_art='BJJ',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
 
     gym2 = Gym(
         owner=User.query.filter_by(email='alice@aa.io').first(),
-        name='Gym B',
+        name='Wildcard Boxing',
         city='Los Angeles',
         martial_art='Boxing',
         created_at=datetime.utcnow(),
@@ -24,9 +24,36 @@ def seed_gyms():
 
     gym3 = Gym(
         owner=User.query.filter_by(email='marnie@aa.io').first(),
-        name='Gym C',
+        name='UFC Gym Las Vegas',
         city='Las Vegas',
-        martial_art='BJJ',
+        martial_art='MMA',
+        created_at=datetime.utcnow(),
+        updated_at=datetime.utcnow()
+    )
+
+    gym4 = Gym(
+        owner=User.query.filter_by(email='demo@aa.io').first(),
+        name='Dstroy',
+        city='San Francisco',
+        martial_art='MMA',
+        created_at=datetime.utcnow(),
+        updated_at=datetime.utcnow()
+    )
+
+    gym5 = Gym(
+        owner=User.query.filter_by(email='charlie@aa.io').first(),
+        name='Elite MMA',
+        city='Los Angeles',
+        martial_art='MMA',
+        created_at=datetime.utcnow(),
+        updated_at=datetime.utcnow()
+    )
+
+    gym6 = Gym(
+        owner=User.query.filter_by(email='david@aa.io').first(),
+        name='HardKnocks',
+        city='Miami',
+        martial_art='Boxing',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
@@ -35,6 +62,9 @@ def seed_gyms():
     db.session.add(gym1)
     db.session.add(gym2)
     db.session.add(gym3)
+    db.session.add(gym4)
+    db.session.add(gym5)
+    db.session.add(gym6)
 
     # Commit the changes to the database
     db.session.commit()

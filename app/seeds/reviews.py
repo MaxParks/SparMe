@@ -7,10 +7,16 @@ def seed_reviews():
     reviewer1 = User.query.filter_by(email='demo@aa.io').first()
     reviewer2 = User.query.filter_by(email='marnie@aa.io').first()
     reviewer3 = User.query.filter_by(email='alice@aa.io').first()
+    reviewer4 = User.query.filter_by(email='bob@aa.io').first()
+    reviewer5 = User.query.filter_by(email='charlie@aa.io').first()
+    reviewer6 = User.query.filter_by(email='david@aa.io').first()
+    reviewer7 = User.query.filter_by(email='elizabeth@aa.io').first()
 
     session1 = Session.query.filter_by(id=1).first()
     session2 = Session.query.filter_by(id=2).first()
     session3 = Session.query.filter_by(id=3).first()
+    session4 = Session.query.filter_by(id=4).first()
+    session5 = Session.query.filter_by(id=5).first()
 
     review1 = Review(
         reviewer_id=reviewer1.id,
@@ -23,7 +29,7 @@ def seed_reviews():
 
     review2 = Review(
         reviewer_id=reviewer2.id,
-        session_id=session3.id,
+        session_id=session2.id,
         rating=2,
         review_text='Bad he hurt me.',
         created_at=datetime.utcnow(),
@@ -38,10 +44,28 @@ def seed_reviews():
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
+    review4 = Review(
+        reviewer_id=reviewer4.id,
+        session_id=session4.id,
+        rating=1,
+        review_text='Terrible , dont train with this monster.',
+        created_at=datetime.utcnow(),
+        updated_at=datetime.utcnow()
+    )
+    review5 = Review(
+        reviewer_id=reviewer2.id,
+        session_id=session1.id,
+        rating=5,
+        review_text='He was a good teacher will try to train again.',
+        created_at=datetime.utcnow(),
+        updated_at=datetime.utcnow()
+    )
 
     db.session.add(review1)
     db.session.add(review2)
     db.session.add(review3)
+    db.session.add(review4)
+    db.session.add(review5)
     db.session.commit()
 
 
