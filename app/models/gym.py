@@ -17,8 +17,8 @@ class Gym(db.Model):
 
     # Relationships
     owner = db.relationship('User', back_populates='owned_gyms')
-    user_gyms = db.relationship('UserGym', back_populates='gym')
-    sessions = db.relationship('Session', back_populates='gym')
+    user_gyms = db.relationship('UserGym', back_populates='gym', cascade='all, delete-orphan')
+    sessions = db.relationship('Session', back_populates='gym', cascade="all, delete-orphan")
 
     def to_dict(self):
         created_at = self.created_at.strftime('%m/%d/%Y') if self.created_at else None

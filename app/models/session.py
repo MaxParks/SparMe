@@ -36,5 +36,6 @@ class Session(db.Model):
             'updated_at': self.updated_at.strftime('%m/%d/%Y') if self.updated_at else None,
             'owner': self.owner.to_dict() if self.owner else None,
             'partner': self.partner.to_dict() if self.partner else None,
-            'gym': self.gym.to_dict() if self.gym else None
+            'gym': self.gym.to_dict() if self.gym else None,
+            'reviews': [review.id for review in self.reviews] if self.reviews else None
         }

@@ -75,7 +75,13 @@ function Dashboard() {
             ))}
         </div>
       </div>
-
+              <br></br>
+      <OpenModalButton
+        buttonText="Create a Session"
+        modalComponent={<CreateSessionModal />}
+        className="dashboard-session"
+      />
+      <br></br>
       <div className="dashboard-section-container">
         <div className="dashboard-section">
           <h2 className="dashboard-section-title">Upcoming Spars:</h2>
@@ -98,12 +104,6 @@ function Dashboard() {
           })}
         </div>
       </div>
-
-      <OpenModalButton
-        buttonText="Create a Session"
-        modalComponent={<CreateSessionModal />}
-        className="dashboard-session"
-      />
     </div>
   );
 }

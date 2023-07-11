@@ -1,18 +1,18 @@
-.gyms-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  height: 120vh;
+.reviews-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 120vh;
   }
 
-  .user-gyms,
-  .other-gyms {
+  .user-reviews {
     margin-bottom: 20px;
   }
 
   .section-title {
+    border: 2px solid black;
     margin-top: 20px;
     margin-bottom: 40px;
     font-size: 26px;
@@ -25,26 +25,13 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
 
-  .gym-item {
+  .review-item {
     border: 2px solid black;
     margin-bottom: 10px;
     background-color: grey;
     padding: 10px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .gym-link {
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  }
-
-  .gym-link:hover {
-    background-color: #e6e6e6;
-    transition: background-color 0.3s ease;
   }
 
   .name {

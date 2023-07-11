@@ -14,6 +14,7 @@
   width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 2px solid black;
+  z-index: 9999; /* High value to bring it to front */
 }
 
 .navigation-container {
@@ -23,6 +24,7 @@
   margin: 0 auto;
   max-width: 1200px;
   padding: 0 20px;
+  z-index: 9999; /* High value to bring it to front */
 }
 
 .navigation-list {
@@ -32,6 +34,7 @@
   list-style: none;
   margin: 150px;
   padding: 0;
+  z-index: 9999; /* High value to bring it to front */
 }
 
 .navigation-item {

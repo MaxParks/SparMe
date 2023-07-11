@@ -29,5 +29,5 @@ class Review(db.Model):
             'created_at': self.created_at.strftime('%m/%d/%Y'),
             'updated_at': self.updated_at.strftime('%m/%d/%Y'),
             'reviewer': self.reviewer.to_dict(),
-            'session': self.session.to_dict()
+            'session': self.session.to_dict() if self.session else None
         }

@@ -5,14 +5,14 @@ import gyms from './gyms'
 import sessions from './sessions'
 import dashboard from './dashboard'
 // import messages from './messages'
-// import reviews from './reviews'
+import reviews from './reviews'
 
 const rootReducer = combineReducers({
   session,
   gyms,
   sessions,
   // messages,
-  // reviews,
+  reviews,
   dashboard
 });
 

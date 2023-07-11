@@ -64,8 +64,6 @@ export const getSessionThunk = id => async dispatch => {
       session_type,
     };
 
-    console.log(sessionData);
-
     const response = await fetch('/api/sessions/', {
       method: 'POST',
       headers: {
