@@ -23,7 +23,7 @@ function AboutModalContent() {
       <div className="about-modal-community">
         <h3>Community Interaction:</h3>
         <p>
-          SparMe fosters a vibrant community of martial artists where you can interact with other practitioners, exchange knowledge, and share experiences. You can join discussion forums, participate in groups, and engage in conversations centered around sparring techniques, training strategies, and martial arts disciplines.
+          SparMe fosters a vibrant community of martial artists where you can interact with other practitioners, exchange knowledge, and share experiences. You can engage in conversations centered around sparring techniques, training strategies, and martial arts disciplines.
         </p>
       </div>
       <div className="about-modal-interface">

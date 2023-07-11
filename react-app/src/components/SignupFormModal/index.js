@@ -33,25 +33,24 @@ const heightDisplay = inches => `${Math.floor(inches / 12)}'${inches % 12}"`;
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-  if (password === confirmPassword) {
-    try {
-      const data = await dispatch(
-        signUp(firstName, lastName, email, password, experience, city, weight, height)
-      );
-      if (data && Array.isArray(data)) {
-        setErrors(data);
-    } else {
-        closeModal();
-        history.push("/user/dashboard");
-      }
-    } catch (err) {
-      console.error(err);
-      setErrors(["An error occurred while trying to sign up. Please try again."]);
-    }
-  } else {
-    setErrors(["Confirm Password field must be the same as the Password field"]);
+  let errs = [];
+  if (password !== confirmPassword) {
+    errs.push("Password and Confirm Password must match.");
   }
-};
+  if (errs.length > 0) {
+    setErrors(errs);
+    return;
+  }
+  const data = await dispatch(
+    signUp(firstName, lastName, email, password, experience, city, weight, height)
+  );
+  if (data) {
+    setErrors(data);
+  } else {
+    closeModal();
+    history.push("/user/dashboard");
+  }
+}
 
   return (
     <div className="login-form-container">
@@ -69,7 +68,6 @@ const handleSubmit = async (e) => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
         </div>
 
@@ -80,7 +78,6 @@ const handleSubmit = async (e) => {
             id="firstName"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            required
           />
         </div>
 
@@ -91,7 +88,6 @@ const handleSubmit = async (e) => {
             id="lastName"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            required
           />
         </div>
 
@@ -102,7 +98,6 @@ const handleSubmit = async (e) => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
         </div>
 
@@ -113,7 +108,6 @@ const handleSubmit = async (e) => {
             id="confirmPassword"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            required
           />
         </div>
         <div className="form-field">
@@ -123,7 +117,6 @@ const handleSubmit = async (e) => {
             id="city"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            required
           />
         </div>
 
@@ -133,7 +126,6 @@ const handleSubmit = async (e) => {
             id="experience"
             value={experience}
             onChange={(e) => setExperience(e.target.value)}
-            required
           >
             <option value="" disabled>Select experience</option>
             {experienceOptions.map((experience, idx) => (
@@ -148,7 +140,6 @@ const handleSubmit = async (e) => {
             id="weight"
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
-            required
           >
             <option value="" disabled>Select weight</option>
             {weightOptions.map((weight, idx) => (
@@ -163,7 +154,6 @@ const handleSubmit = async (e) => {
             id="height"
             value={height}
             onChange={(e) => setHeight(e.target.value)}
-            required
           >
             <option value="" disabled>Select height</option>
             {heightOptions.map((height, idx) => (

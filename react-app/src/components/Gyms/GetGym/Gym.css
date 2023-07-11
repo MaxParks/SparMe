@@ -1,11 +1,10 @@
-.gym-container {
+.session-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    min-height: 100vh;
+    min-height: 130vh;
     padding: 30px;
-    background: linear-gradient(to bottom, #701100, #F26249);
     font-family: 'Roboto', sans-serif;
   }
 
