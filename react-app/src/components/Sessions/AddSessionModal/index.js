@@ -3,7 +3,7 @@ import { createSessionThunk} from "../../../store/sessions";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { useHistory } from "react-router-dom";
-// import './CreateSessionModal.css'
+import './CreateSessionModal.css'
 
 function CreateSessionModal(isLoaded) {
   const dispatch = useDispatch();

@@ -41,7 +41,7 @@ function Gyms() {
         <OpenModalButton
         buttonText="Create a Gym"
         modalComponent={<CreateGymModal />}
-        className="session-button"
+        className="gym-button"
       />
       <div className="user-gyms">
         <h2 className="section-title">My Gyms:</h2>

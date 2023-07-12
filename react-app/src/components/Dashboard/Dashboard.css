@@ -125,3 +125,15 @@
   color: #FF6600;
   text-decoration: underline;
 }
+
+.dashboard-session {
+  background-color: rgb(7, 168, 7);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dashboard-session:hover {
+  background-color: darkgreen;
+}
