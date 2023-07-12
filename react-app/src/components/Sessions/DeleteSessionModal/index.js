@@ -2,7 +2,7 @@ import { useDispatch} from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { deleteSessionThunk } from "../../../store/sessions";
 import { useHistory } from "react-router-dom";
-// import './index.css'
+import './DeleteSessionModal.css'
 
 function DeleteSessionModal({ id }) {
     const { closeModal } = useModal();
