@@ -43,6 +43,7 @@
 
 #modal-content {
   animation: modalFadeIn 0.3s ease-in-out;
+  padding: 30px;
 }
 
 /* Optional: Add animation for modal exit */
