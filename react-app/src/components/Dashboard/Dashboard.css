@@ -44,6 +44,7 @@
 
 .dashboard-section {
   background-color: grey;
+  margin: 10px;
   border-radius: 8px;
   border: 2px solid white;
 }
@@ -126,7 +127,7 @@
   text-decoration: underline;
 }
 
-.dashboard-session {
+.get-started {
   background-color: rgb(7, 168, 7);
   color: white;
   border: none;
@@ -134,6 +135,35 @@
   cursor: pointer;
 }
 
-.dashboard-session:hover {
+.get-started:hover {
+  background-color: darkgreen;
+}
+
+.dashboard-no-upcoming-spar{
+  font-size: 20px;
+  color: black;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-container .load-more-button {
+  padding: 5px 10px;
+  width: 130px;
+  height: 30px;
+  box-sizing: border-box;
+  border: none;
+  font-size: 12px;
+  color: white;
+  background-color: rgb(7, 168, 7);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+.load-more-button:hover {
   background-color: darkgreen;
 }

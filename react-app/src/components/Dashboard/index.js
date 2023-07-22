@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { getDashboardThunk } from "../../store/dashboard";
 import ProfileButton from "../Navigation/ProfileButton";
 import OpenModalButton from "../OpenModalButton";
-
 import "./Dashboard.css";
 import CreateSessionModal from "../Sessions/AddSessionModal";
 
@@ -24,6 +23,7 @@ function Dashboard() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const dashboardData = useSelector((state) => state.dashboard);
+  const [userIndex, setUserIndex] = useState(0);
 
   useEffect(() => {
     dispatch(getDashboardThunk());
@@ -45,6 +45,10 @@ function Dashboard() {
       )
     : [];
 
+    const loadMoreUsers = () => {
+      setUserIndex(userIndex + 5);
+    }
+
   return (
     <div className="dashboard-container">
       <img
@@ -62,17 +66,18 @@ function Dashboard() {
 
       <div className="dashboard-section-container">
       <OpenModalButton
-        buttonText="Create a Session"
+        buttonText="Get Started"
         modalComponent={<CreateSessionModal />}
-        className="dashboard-session"
+        className="get-started"
       />
       <br></br>
         <div className="dashboard-section">
           <h2 className="dashboard-section-title">People:</h2>
         </div>
         <div className="dashboard-task-list">
-          {dashboardData.allUsers &&
-            Object.values(dashboardData.allUsers).map((user) => (
+        {dashboardData.allUsers &&
+            // Display only up to the current index of users
+            Object.values(dashboardData.allUsers).slice(0, userIndex + 5).map((user) => (
               <div key={user.id} className="dashboard-user-item">
                 <div className="dashboard-user-link">
                   <span className="user-info">{user.firstName} {user.lastName}</span>
@@ -80,27 +85,40 @@ function Dashboard() {
               </div>
             ))}
         </div>
+        {dashboardData.allUsers && dashboardData.allUsers.length > userIndex + 5 && (
+  <div className="button-container">
+    <button className="load-more-button" onClick={loadMoreUsers}>Load More Users</button>
+  </div>
+)}
+
       </div>
       <div className="dashboard-section-container">
         <div className="dashboard-section">
           <h2 className="dashboard-section-title">Upcoming Spars:</h2>
         </div>
         <div className="dashboard-task-list">
-          {upcomingSessions.map((session) => {
-            const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
-            return (
-              <div key={session.id} className="dashboard-upcoming-spar">
-                <Link to={`/sessions/${session.id}`} className="dashboard-session-link">
-                  <span className="dashboard-session-info">
-                    {session.owner.firstName} {session.owner.lastName} ---{" "}
-                    {session.partner.firstName} {session.partner.lastName} ---{" "}
-                    {session.gym.name} --- {session.session_type} ---{" "}
-                    {formattedDate}-{formattedTime}
-                  </span>
-                </Link>
-              </div>
-            );
-          })}
+        {upcomingSessions.length === 0 ? (
+  <div className="dashboard-no-upcoming-spar">
+    <span>No Upcoming Spars at the moment</span>
+  </div>
+) : (
+  upcomingSessions.map((session) => {
+    const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
+    return (
+      <div key={session.id} className="dashboard-upcoming-spar">
+        <Link to={`/sessions/${session.id}`} className="dashboard-session-link">
+          <span className="dashboard-session-info">
+            {session.owner.firstName} {session.owner.lastName} ---{" "}
+            {session.partner.firstName} {session.partner.lastName} ---{" "}
+            {session.gym.name} --- {session.session_type} ---{" "}
+            {formattedDate}-{formattedTime}
+          </span>
+        </Link>
+      </div>
+    );
+  })
+)}
+
         </div>
       </div>
     </div>

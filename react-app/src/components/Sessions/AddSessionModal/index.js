@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import {getGymsThunk} from "../../../store/gyms"
 import { createSessionThunk} from "../../../store/sessions";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
@@ -18,9 +19,25 @@ function CreateSessionModal(isLoaded) {
 
   const allUsers = useSelector((state) => state.dashboard.allUsers);
   const currentUser = useSelector((state) => state.session.user);
-  const allGyms = useSelector((state) => state.dashboard.allGyms);
+  const allGyms = useSelector((state) => {
+    const ownedGyms = state.gyms.owned_gyms || [];
+    const associatedGyms = state.gyms.associated_gyms || [];
+
+    // Combine and deduplicate gyms
+    return [...ownedGyms, ...associatedGyms].reduce((acc, gym) => {
+        if (!acc.find((g) => g.id === gym.id)) {
+            acc.push(gym);
+        }
+        return acc;
+    }, []);
+});
+
 
   const filteredUsers = allUsers.filter((user) => user.id !== currentUser.id);
+
+  useEffect(() => {
+    dispatch(getGymsThunk());
+  }, [dispatch]);
 
 
   const handleSubmit = async (e) => {
@@ -86,21 +103,21 @@ function CreateSessionModal(isLoaded) {
         </ul>
 
         <div className="form-field">
-            <select
-              id="gym_id"
-              value={gym ? gym.id : ""}
-              onChange={(e) => {
-                const selectedGym = allGyms.find((gym) => gym.id === Number(e.target.value));
-                setGym(selectedGym);
-              }}
-            >
-              <option value="">Select Gym</option>
-              {allGyms.map((gym) => (
-                <option key={gym.id} value={gym.id}>
-                  {gym.name}
-                </option>
-              ))}
-            </select>
+        <select
+  id="gym_id"
+  value={gym ? gym.id : ""}
+  onChange={(e) => {
+    const selectedGym = allGyms.find((gym) => gym.id === Number(e.target.value));
+    setGym(selectedGym);
+  }}
+>
+  <option value="">Select Gym</option>
+  {allGyms.map((gym) => (
+    <option key={gym.id} value={gym.id}>
+      {gym.name}
+    </option>
+  ))}
+</select>
           </div>
         <div className="form-field">
   <select

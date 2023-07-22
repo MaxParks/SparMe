@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getSessionsThunk } from "../../../store/sessions";
+import OpenModalButton from "../../OpenModalButton";
+import CreateSessionModal from "../AddSessionModal";
 import "./GetSessions.css";
 
 function formatDateAndTime(dateString) {
@@ -50,52 +52,58 @@ function Sessions() {
         src={require("./mma gloves.jpg").default}
         alt="Background"
       />
-      <div className="upcoming-sessions">
-        <h2 className="section-title">Upcoming Sparring Sessions:</h2>
-        {upcomingSessions.map((session) => {
-          const { formattedDate, formattedTime } = formatDateAndTime(
-            session.session_date
-          );
-          return (
-            <div key={session.id} className="session-item">
-              <Link to={`/sessions/${session.id}`} className="session-link">
-                <span className="name">
-                  {session.owner?.firstName} {session.owner?.lastName}
-                </span>{" "}
-                ---{" "}
-                <span>
-                  {session.partner?.firstName} {session.partner?.lastName}
-                </span>{" "}
-                --- {session.gym?.name} --- {session.session_type} ---{" "}
-                {formattedDate} - {formattedTime}
-              </Link>
-            </div>
-          );
-        })}
-      </div>
-      <div className="previous-sessions">
-        <h2 className="section-title">Previous Sparring Sessions:</h2>
-        {previousSessions.map((session) => {
-          const { formattedDate, formattedTime } = formatDateAndTime(
-            session.session_date
-          );
-          return (
-            <div key={session.id} className="session-item">
-              <Link to={`/sessions/${session.id}`} className="session-link">
-                <span className="name">
-                  {session.owner?.firstName} {session.owner?.lastName}
-                </span>{" "}
-                ---{" "}
-                <span className="name">
-                  {session.partner?.firstName} {session.partner?.lastName}
-                </span>{" "}
-                --- {session.gym?.name} --- {session.session_type} ---{" "}
-                {formattedDate} - {formattedTime}
-              </Link>
-            </div>
-          );
-        })}
-      </div>
+  <OpenModalButton
+        buttonText="Create a Session"
+        modalComponent={<CreateSessionModal />}
+        className="dashboard-session"
+      />
+
+<div className="upcoming-sessions">
+  <h2 className="section-title">Upcoming Sparring Sessions:</h2>
+  {upcomingSessions.length === 0 ? (
+    <div className="no-upcoming-sessions">
+      <span>No Upcoming Spars at the moment</span>
+    </div>
+  ) : (
+    upcomingSessions.map((session) => {
+      const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
+      return (
+        <div key={session.id} className="session-item">
+          <Link to={`/sessions/${session.id}`} className="session-link">
+            <span className="name">{session.owner?.firstName} {session.owner?.lastName}</span>{" "}
+            ---{" "}
+            <span>{session.partner?.firstName} {session.partner?.lastName}</span>{" "}
+            --- {session.gym?.name} --- {session.session_type} ---{" "}
+            {formattedDate} - {formattedTime}
+          </Link>
+        </div>
+      );
+    })
+  )}
+</div>
+<div className="previous-sessions">
+  <h2 className="section-title">Previous Sparring Sessions:</h2>
+  {previousSessions.length === 0 ? (
+    <div className="no-previous-sessions">
+      <span>No Previous Spars at the moment</span>
+    </div>
+  ) : (
+    previousSessions.map((session) => {
+      const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
+      return (
+        <div key={session.id} className="session-item">
+          <Link to={`/sessions/${session.id}`} className="session-link">
+            <span className="name">{session.owner?.firstName} {session.owner?.lastName}</span>{" "}
+            ---{" "}
+            <span className="name">{session.partner?.firstName} {session.partner?.lastName}</span>{" "}
+            --- {session.gym?.name} --- {session.session_type} ---{" "}
+            {formattedDate} - {formattedTime}
+          </Link>
+        </div>
+      );
+    })
+  )}
+</div>
     </div>
   );
 }
