@@ -44,16 +44,20 @@ function Gyms() {
         className="gym-button"
       />
       <div className="user-gyms">
-        <h2 className="section-title">My Gyms:</h2>
-        {userGyms.map((gym) => (
+      <h2 className="section-title">My Gyms:</h2>
+      {userGyms.length > 0 ? (
+        userGyms.map((gym) => (
           <div key={gym.id} className="gym-item">
             <Link to={`/gyms/${gym.id}`} className="gym-link">
               <span className="name">{gym.name}</span> ---{" "}
               <span>{gym.city}</span> --- {gym.martial_art}
             </Link>
           </div>
-        ))}
-      </div>
+        ))
+      ) : (
+        <p className="empty-message">To join a Gym select an existing gym</p>
+      )}
+    </div>
       <div className="other-gyms">
         <h2 className="section-title">All Gyms:</h2>
         {allGyms.map((gym) => (

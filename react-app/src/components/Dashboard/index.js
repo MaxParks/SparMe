@@ -5,7 +5,7 @@ import { getDashboardThunk } from "../../store/dashboard";
 import ProfileButton from "../Navigation/ProfileButton";
 import OpenModalButton from "../OpenModalButton";
 import "./Dashboard.css";
-import CreateSessionModal from "../Sessions/AddSessionModal";
+import GetStartedModal from "./GetStarted";
 
 function formatDateAndTime(dateString) {
   const dateObj = new Date(dateString);
@@ -49,6 +49,10 @@ function Dashboard() {
       setUserIndex(userIndex + 5);
     }
 
+    const collapseUsers = () => {
+      setUserIndex(0);
+    }
+
   return (
     <div className="dashboard-container">
       <img
@@ -59,7 +63,6 @@ function Dashboard() {
       <div className="dashboard-header">
         <h1 className="dashboard-title">Dashboard
         <br></br>
-        {/* {`${greetingMessage}, ${sessionUser.firstName} ${sessionUser.lastName}`} */}
         </h1>
       </div>
 
@@ -67,7 +70,7 @@ function Dashboard() {
       <div className="dashboard-section-container">
       <OpenModalButton
         buttonText="Get Started"
-        modalComponent={<CreateSessionModal />}
+        modalComponent={<GetStartedModal />}
         className="get-started"
       />
       <br></br>
@@ -87,10 +90,14 @@ function Dashboard() {
         </div>
         {dashboardData.allUsers && dashboardData.allUsers.length > userIndex + 5 && (
   <div className="button-container">
-    <button className="load-more-button" onClick={loadMoreUsers}>Load More Users</button>
+    <button className="load-more-button" onClick={loadMoreUsers}>Load More People</button>
   </div>
 )}
-
+{userIndex > 0 && (
+          <div className="button-container">
+            <button className="collapse-users-button" onClick={collapseUsers}>Collapse Users</button>
+          </div>
+        )}
       </div>
       <div className="dashboard-section-container">
         <div className="dashboard-section">

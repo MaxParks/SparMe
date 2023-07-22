@@ -69,3 +69,41 @@ border-radius: 8px;
   margin-top: 20px;
   margin-bottom: 10px;
 }
+
+.session-container .join-gym-button {
+  padding: 5px 10px;
+  width: 130px;
+  height: 30px;
+  box-sizing: border-box;
+  border: none;
+  font-size: 14px;
+  color: white;
+  background-color: rgb(7, 168, 7);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+.join-gym-button:hover {
+  background-color: darkgreen;
+}
+
+.session-container .leave-gym-button {
+  padding: 5px 10px;
+  width: 130px;
+  height: 30px;
+  box-sizing: border-box;
+  border: none;
+  font-size: 14px;
+  color: white;
+  background-color: rgb(126, 10, 10);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+.leave-gym-button:hover {
+  background-color: rgb(170, 10, 10);
+}

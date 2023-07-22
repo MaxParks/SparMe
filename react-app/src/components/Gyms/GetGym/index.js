@@ -33,12 +33,18 @@ function Gym() {
     gymData &&
     gymData.owner_id &&
     sessionUser.id === gymData.owner_id;
+
   const userIsMember =
-    sessionUser &&
-    gymData &&
-    gymData.user_gyms &&
-    gymData.user_gyms.some((userGym) => userGym.gym_id === gymData.id);
+  sessionUser &&
+  gymData &&
+  gymData.members &&
+  gymData.members.some((member) => member.user && member.user.id === sessionUser.id);
   const [showDetailsMap, setShowDetailsMap] = useState({});
+
+console.log('userIsOwner:', userIsOwner);
+console.log('userIsMember:', userIsMember);
+console.log('gymData:', gymData);
+
 
   const toggleDetails = (sessionId) => {
     setShowDetailsMap((prevShowDetailsMap) => {
@@ -93,16 +99,16 @@ function Gym() {
       </div>
 
       {!userIsOwner && !userIsMember && (
-        <button className="join-session-button" onClick={joinGym}>
+        <button className="join-gym-button" onClick={joinGym}>
           Join Gym
         </button>
       )}
       <br></br>
-      {!userIsOwner &&  (
-        <button className="leave-gym-button" onClick={leaveGym}>
-          Leave Gym
-        </button>
-      )}
+      {userIsMember && !userIsOwner && (
+  <button className="leave-gym-button" onClick={leaveGym}>
+    Leave Gym
+  </button>
+)}
       {userIsOwner && (
         <ul className="dropdown-content">
           <li>
@@ -131,7 +137,6 @@ function Gym() {
             <strong>Owner: </strong>
             {`${gymData.owner?.firstName} ${gymData.owner?.lastName}`}
           </li>
-          <br></br>
           {gymMembers &&
             gymMembers.map(
               (member) =>
