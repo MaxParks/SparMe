@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Session, Review
 from datetime import datetime
-from app.forms import review_form
+from app.forms import ReviewForm,UpdateReviewForm
 
 review_routes = Blueprint('review_routes', __name__)
 
@@ -31,13 +31,36 @@ def get_user_reviews():
     user_reviews_data = [review.to_dict() for review in user_reviews]
     return jsonify(user_reviews_data), 200
 
+# Get all partner reviews for the current user
+@review_routes.route('/partner', methods=['GET'])
+@login_required
+def get_partner_reviews():
+    # Get all sessions that the current user was a part of
+    user_sessions = Session.query.filter(
+        (Session.owner_id == current_user.id) | (Session.partner_id == current_user.id)
+    ).all()
+
+    # Get all reviews for these sessions, excluding reviews made by the current user
+    partner_reviews = Review.query.filter(
+        Review.session_id.in_([session.id for session in user_sessions]),
+        Review.reviewer_id != current_user.id
+    ).all()
+
+    partner_reviews_data = [review.to_dict() for review in partner_reviews]
+    return jsonify(partner_reviews_data), 200
+
 # Create a review
 @review_routes.route('/', methods=['POST'])
 @login_required
 def create_review():
-    form = review_form()
+    form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        # Check if the user has already reviewed this session
+        existing_review = Review.query.filter_by(session_id=form.data['session_id'], reviewer_id=current_user.id).first()
+
+        if existing_review:
+            return {'errors': ['You have already reviewed this session.']}, 400
         review = Review(
             reviewer_id=current_user.id,
             session_id=form.data['session_id'],
@@ -60,7 +83,7 @@ def update_review(id):
     if current_user.id != review.reviewer_id:
         return {"message": "Unauthorized", "statusCode": 403}, 403
 
-    form = review_form()
+    form = UpdateReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():

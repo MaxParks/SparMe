@@ -1,9 +1,11 @@
 // Constants
 const LOAD_REVIEWS = 'reviews/loadReviews';
 const LOAD_REVIEW = 'review/loadReview';
+const LOAD_PARTNER_REVIEW = 'review/loadPartnerReviews'
 const ADD_REVIEW = 'reviews/addReview';
 const UPDATE_REVIEW = 'reviews/updateReview';
 const DELETE_REVIEW = 'reviews/deleteReview';
+const RESET_REVIEWS = 'reviews/resetReviews'
 
 // Action creators
 export const loadReviews = data => ({
@@ -11,8 +13,17 @@ export const loadReviews = data => ({
   payload: data
 });
 
+export const resetReviews = () => ({
+  type: RESET_REVIEWS
+});
+
 export const loadReview = data => ({
   type: LOAD_REVIEW,
+  payload: data
+});
+
+export const loadPartnerReviews = data => ({
+  type: LOAD_PARTNER_REVIEW,
   payload: data
 });
 
@@ -48,6 +59,19 @@ export const getReviewsThunk = () => async dispatch => {
       return data;
     }
   };
+  export const getPartnerReviewsThunk = () => async dispatch => {
+    const response = await fetch('/api/reviews/partner');
+
+    if (response.ok) {
+      const arrayData = await response.json();
+      const data = arrayData.reduce((acc, item) => {
+        acc[item.id] = item;
+        return acc;
+      }, {});
+      dispatch(loadPartnerReviews(data));
+      return data;
+    }
+};
 
 export const getReviewThunk = id => async dispatch => {
   const response = await fetch(`/api/reviews/${id}`);
@@ -107,9 +131,11 @@ export const deleteReviewThunk = id => async dispatch => {
   }
 };
 
+
 // Initial state
 const initialState = {
     reviews: {},
+    partnerReviews: {},
 };
 
 // Reducer
@@ -129,6 +155,16 @@ export default function reviewsReducer(state = initialState, action){
         ...state,
         ...action.payload
       };
+
+      case LOAD_PARTNER_REVIEW: {
+        return {
+          ...state,
+          partnerReviews: {
+            ...state.partnerReviews,
+            ...action.payload
+          }
+        }
+    }
       case ADD_REVIEW: {
         return {
           ...state,
@@ -151,6 +187,10 @@ export default function reviewsReducer(state = initialState, action){
         const newState = { ...state };
         delete newState.reviews[action.payload];
         return newState;
+      }
+      case RESET_REVIEWS:
+      return {
+        ...initialState
       }
     default:
       return state;

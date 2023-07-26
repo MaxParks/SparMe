@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getReviewsThunk } from "../../../store/reviews";
+import { getReviewsThunk,getPartnerReviewsThunk,resetReviews } from "../../../store/reviews";
 import "./GetReviews.css";
+import OpenModalButton from "../../OpenModalButton";
+import CreateReviewModal from "../CreateReviewModal";
 
 function Star({ filled }) {
-  return (
-    <span>{filled ? "★" : "☆"}</span>
-  );
+  return <span>{filled ? '⭐' : '☆'}</span>
 }
 
 
@@ -29,11 +29,13 @@ function Reviews() {
   const reviewUser = useSelector((state) => state.session.user);
 
 
-    useEffect(() => {
-        dispatch(getReviewsThunk());
-      }, [dispatch]);
+  useEffect(() => {
+    dispatch(resetReviews());
+    dispatch(getReviewsThunk());
+    dispatch(getPartnerReviewsThunk());
+}, [dispatch]);
 
-      if (!reviewData || !reviewData.reviews) {
+      if (!reviewData || !reviewData.reviews || !reviewData.partnerReviews) {
         return null;
       }
 
@@ -43,6 +45,11 @@ function Reviews() {
         className="background-image"
         src={require("./try this 1.jpg").default}
         alt="Background"
+      />
+      <OpenModalButton
+        buttonText="Create a Review"
+        modalComponent={<CreateReviewModal />}
+        className="review-button"
       />
       <div className="user-reviews">
         <h2 className="section-title">My Reviews:</h2>
@@ -69,11 +76,41 @@ function Reviews() {
           Review:</span>{" "}
           <br></br>
         {review.reviewer?.firstName} {review.reviewer?.lastName}{" "}
-        --- Rating: {Array(5).fill().map((_, i) => <Star filled={i < review.rating} />)} --- Review: {review.review_text}
+        ---  {Array(5).fill().map((_, i) => <Star filled={i < review.rating} />)} --- {review.review_text}
     </div>
   );
 })}
 
+      </div>
+      <div className="partner-reviews">
+        <h2 className="section-title">My Partner's Reviews:</h2>
+        {Object.values(reviewData.partnerReviews).map((review) => {
+    const { formattedDate, formattedTime } = formatDateAndTime(
+        review.session.session_date
+      );
+  return (
+    <div key={review.id} className="review-item">
+        <span className="name">
+          Session:</span>{" "}
+          <br></br>
+          {review.session.owner?.firstName} {review.session.owner?.lastName}
+
+        ---{" "}
+        <span>
+          {review.session.partner?.firstName} {review.session.partner?.lastName}
+        </span>{" "}
+        --- {review.session.gym?.name} --- {review.session.session_type} ---{" "}
+        {formattedDate} - {formattedTime}
+        <br></br>
+        <br></br>
+        <span className="name">
+          Review:</span>{" "}
+          <br></br>
+        {review.reviewer?.firstName} {review.reviewer?.lastName}{" "}
+        --- {Array(5).fill().map((_, i) => <Star filled={i < review.rating} />)} --- {review.review_text}
+    </div>
+  );
+})}
       </div>
     </div>
   );

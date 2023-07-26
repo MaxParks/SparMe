@@ -12,6 +12,7 @@ import GetSessions from './components/Sessions/GetSessions'
 import GetGyms from './components/Gyms/GetGyms'
 import GetGym from './components/Gyms/GetGym'
 import GetReviews from './components/Reviews/GetReviews'
+import GetReview from './components/Reviews/GetReview'
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,9 @@ function App() {
         </Route>
         <Route path="/gyms/">
           <GetGyms />
+        </Route>
+        <Route path="/reviews/:id">
+          <GetReview />
         </Route>
         <Route path="/reviews/">
           <GetReviews />

@@ -20,14 +20,17 @@ class Review(db.Model):
     session = db.relationship('Session', back_populates='reviews')
 
     def to_dict(self):
+        created_at = self.created_at.strftime('%m/%d/%Y') if self.created_at else None
+        updated_at = self.updated_at.strftime('%m/%d/%Y') if self.updated_at else None
+
         return {
             'id': self.id,
             'reviewer_id': self.reviewer_id,
             'session_id': self.session_id,
             'rating': self.rating,
             'review_text': self.review_text,
-            'created_at': self.created_at.strftime('%m/%d/%Y'),
-            'updated_at': self.updated_at.strftime('%m/%d/%Y'),
+            'created_at': created_at,
+            'updated_at': updated_at,
             'reviewer': self.reviewer.to_dict(),
             'session': self.session.to_dict() if self.session else None
         }
