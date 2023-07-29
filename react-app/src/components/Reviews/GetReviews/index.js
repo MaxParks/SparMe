@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getReviewsThunk,getPartnerReviewsThunk,resetReviews } from "../../../store/reviews";
 import "./GetReviews.css";
 import OpenModalButton from "../../OpenModalButton";
@@ -49,16 +50,17 @@ function Reviews() {
       <OpenModalButton
         buttonText="Create a Review"
         modalComponent={<CreateReviewModal />}
-        className="review-button"
+        className="dashboard-session"
       />
       <div className="user-reviews">
-        <h2 className="section-title">My Reviews:</h2>
+        <h2 className="section-title1">My Reviews:</h2>
         {Object.values(reviewData.reviews).map((review) => {
     const { formattedDate, formattedTime } = formatDateAndTime(
         review.session.session_date
       );
   return (
     <div key={review.id} className="review-item">
+      <Link to={`/reviews/${review.id}`} className="session-link1">
         <span className="name">
           Session:</span>{" "}
           <br></br>
@@ -77,13 +79,14 @@ function Reviews() {
           <br></br>
         {review.reviewer?.firstName} {review.reviewer?.lastName}{" "}
         ---  {Array(5).fill().map((_, i) => <Star filled={i < review.rating} />)} --- {review.review_text}
+        </Link>
     </div>
   );
 })}
 
       </div>
       <div className="partner-reviews">
-        <h2 className="section-title">My Partner's Reviews:</h2>
+        <h2 className="section-title1">My Partner's Reviews:</h2>
         {Object.values(reviewData.partnerReviews).map((review) => {
     const { formattedDate, formattedTime } = formatDateAndTime(
         review.session.session_date

@@ -32,11 +32,23 @@ function CreateReviewModal(isLoaded) {
   const currentUser = useSelector((state) => state.session.user);
 
   const sessionsNotReviewed = allSessions?.filter((session) => {
+    // Get the session's date as a Date object
+    const sessionDate = new Date(session.session_date);
+
+    // Check if the session's date is in the past compared to the current date
+    const isPastSession = sessionDate.getTime() < Date.now();
+
+    // Check if the user has already reviewed this session
     const hasReviewed = Object.values(allReviews).some((review) => {
-      return (review.session_id === session.id && review.reviewer_id === currentUser.id);
+      return (
+        review.session_id === session.id && review.reviewer_id === currentUser.id
+      );
     });
-    return !hasReviewed;
+
+    // Return true only if it's a past session and the user has not reviewed it yet
+    return isPastSession && !hasReviewed;
   });
+
 
 
   useEffect(() => {

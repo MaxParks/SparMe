@@ -85,7 +85,7 @@ border-radius: 8px;
 
 
 
-.join-gym-button:hover {
+.update-button:hover {
   background-color: darkgreen;
 }
 
@@ -104,6 +104,6 @@ border-radius: 8px;
 
 
 
-.leave-gym-button:hover {
+.cancel-button:hover {
   background-color: rgb(170, 10, 10);
 }

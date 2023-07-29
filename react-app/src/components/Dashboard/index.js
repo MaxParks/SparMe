@@ -112,7 +112,7 @@ function Dashboard() {
   upcomingSessions.map((session) => {
     const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
     return (
-      <div key={session.id} className="dashboard-upcoming-spar">
+      <div key={session.id} className="session-link">
         <Link to={`/sessions/${session.id}`} className="dashboard-session-link">
           <span className="dashboard-session-info">
             {session.owner.firstName} {session.owner.lastName} ---{" "}

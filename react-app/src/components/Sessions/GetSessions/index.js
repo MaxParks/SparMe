@@ -71,9 +71,9 @@ function Sessions() {
         <div key={session.id} className="session-item">
           <Link to={`/sessions/${session.id}`} className="session-link">
             <span className="name">{session.owner?.firstName} {session.owner?.lastName}</span>{" "}
-            ---{" "}
+            -{" "}
             <span>{session.partner?.firstName} {session.partner?.lastName}</span>{" "}
-            --- {session.gym?.name} --- {session.session_type} ---{" "}
+            - {session.gym?.name} - {session.session_type} -{" "}
             {formattedDate} - {formattedTime}
           </Link>
         </div>
@@ -94,9 +94,9 @@ function Sessions() {
         <div key={session.id} className="session-item">
           <Link to={`/sessions/${session.id}`} className="session-link">
             <span className="name">{session.owner?.firstName} {session.owner?.lastName}</span>{" "}
-            ---{" "}
+            -{" "}
             <span className="name">{session.partner?.firstName} {session.partner?.lastName}</span>{" "}
-            --- {session.gym?.name} --- {session.session_type} ---{" "}
+            - {session.gym?.name} - {session.session_type} -{" "}
             {formattedDate} - {formattedTime}
           </Link>
         </div>

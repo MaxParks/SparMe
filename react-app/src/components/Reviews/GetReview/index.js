@@ -82,7 +82,7 @@ function formatDateAndTime(dateString) {
                     buttonText="Update"
                     modalComponent={<UpdateReviewModal id={id} />}
                     key={`update-${id}`}
-                    className="session-button"
+                    className="update-button"
                   />
                 </li>
                 <li>
@@ -90,7 +90,7 @@ function formatDateAndTime(dateString) {
                     buttonText="Delete"
                     modalComponent={<DeleteReviewModal id={id} />}
                     key={`delete-${id}`}
-                    className="session-button"
+                    className="cancel-button"
                  />
                 </li>
               </ul>

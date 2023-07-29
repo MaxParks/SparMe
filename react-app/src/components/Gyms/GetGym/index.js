@@ -99,13 +99,13 @@ console.log('gymData:', gymData);
       </div>
 
       {!userIsOwner && !userIsMember && (
-        <button className="join-gym-button" onClick={joinGym}>
+        <button className="update-button" onClick={joinGym}>
           Join Gym
         </button>
       )}
       <br></br>
       {userIsMember && !userIsOwner && (
-  <button className="leave-gym-button" onClick={leaveGym}>
+  <button className="cancel-button" onClick={leaveGym}>
     Leave Gym
   </button>
 )}
@@ -116,7 +116,7 @@ console.log('gymData:', gymData);
               buttonText="Update"
               modalComponent={<UpdateGymModal id={id} />}
               key={`update-${id}`}
-              className="session-button"
+              className="update-button"
             />
           </li>
           <li>
@@ -124,7 +124,7 @@ console.log('gymData:', gymData);
               buttonText="Delete"
               modalComponent={<DeleteGymModal id={id} />}
               key={`delete-${id}`}
-              className="session-button"
+              className="cancel-button"
             />
           </li>
         </ul>

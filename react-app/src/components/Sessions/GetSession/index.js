@@ -95,7 +95,7 @@ function Session() {
                     buttonText="Update"
                     modalComponent={<UpdateSessionModal id={id} />}
                     key={`update-${id}`}
-                    className="session-button"
+                    className="update-button"
                   />
                 </li>
                 <li>
@@ -103,7 +103,7 @@ function Session() {
                     buttonText="Delete"
                     modalComponent={<DeleteSessionModal id={id} />}
                     key={`delete-${id}`}
-                    className="session-button"
+                    className="cancel-button"
                  />
                 </li>
               </ul>

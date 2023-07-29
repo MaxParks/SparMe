@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import {getGymsThunk} from "../../../store/gyms"
 import { createSessionThunk} from "../../../store/sessions";
+import { getDashboardThunk } from "../../../store/dashboard";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
 import { useHistory } from "react-router-dom";
@@ -33,9 +34,14 @@ function CreateSessionModal(isLoaded) {
 });
 
 
-  const filteredUsers = allUsers.filter((user) => user.id !== currentUser.id);
+let filteredUsers = [];
+if (allUsers) {
+  filteredUsers = allUsers.filter((user) => user.id !== currentUser.id);
+}
+
 
   useEffect(() => {
+    dispatch(getDashboardThunk());
     dispatch(getGymsThunk());
   }, [dispatch]);
 
