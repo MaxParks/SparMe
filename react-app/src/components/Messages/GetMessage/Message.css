@@ -1,0 +1,63 @@
+/* GetMessage.css */
+
+.conversation-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: url('./messagebackground.jpg') no-repeat center center fixed;
+  background-size: cover;
+  }
+
+  .conversation-container h1 {
+    margin-bottom: 20px;
+  }
+
+  .conversation-container .message-block {
+    background: #a7a6a6;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    max-width: 70%;
+    align-self: flex-start;
+    background-color: #b9b9b9;
+  }
+
+  .conversation-container .message-block p {
+    margin: 0;
+  }
+
+  .conversation-container form {
+    align-self: flex-start;
+    width: 70%;
+  }
+
+  .conversation-container form textarea {
+    width: 50%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 4px solid grey;
+    border-radius: 8px;
+  }
+
+  .conversation-container form button {
+    background-color: rgb(7, 168, 7);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 40px;
+    width: 80px;
+  }
+
+  .conversation-container form button:hover {
+    background-color: darkgreen;
+  }
+
+  .conversation-container .message-block.current-user {
+    background-color: #add8e6;
+    align-self: flex-start;
+  }

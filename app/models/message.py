@@ -24,8 +24,8 @@ class Message(db.Model):
             'sender_id': self.sender_id,
             'receiver_id': self.receiver_id,
             'message_text': self.message_text,
-            'created_at': self.created_at.strftime('%m/%d/%Y'),
-            'updated_at': self.updated_at.strftime('%m/%d/%Y'),
+            'created_at': self.created_at.strftime('%m/%d/%Y %I:%M %p') if self.created_at else None,
+            'updated_at': self.updated_at.strftime('%m/%d/%Y %I:%M %p') if self.created_at else None,
             'sender': self.sender.to_dict(),
             'receiver': self.receiver.to_dict()
         }

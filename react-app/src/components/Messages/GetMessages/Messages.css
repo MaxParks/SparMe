@@ -1,0 +1,46 @@
+/* Messages.css */
+
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  .messages-container h1 {
+    border: 2px solid black;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 26px;
+    width: fit-content;
+    background-color: grey;
+    color: black;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Pacifico', cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .messages-container .user-link {
+    text-decoration: none;
+    color: black;
+    font-size: 1.5em;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid grey;
+    transition: background 0.3s ease;
+    background-color: lightgrey; /* Added background color */
+  }
+
+  .messages-container .user-link:hover {
+    background: rgb(158, 151, 151);
+    border: 2px solid #333;
+  }
+
+  .user-div {
+    margin-bottom: 20px; /* increased the space between usernames */
+  }

@@ -40,12 +40,12 @@
 
   .review-item {
     border: 2px solid black;
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 10px;
     background-color: grey;
     padding: 10px;
+    color: black;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .name {
@@ -55,12 +55,14 @@
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   }
 
-  .session-link1 {
+  .session-link2 {
     text-decoration: none;
     color: black;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
   }
 
-  .session-link1:hover {
+  .session-link2:hover {
     background-color: #e6e6e6;
     transition: background-color 0.3s ease;
   }

@@ -69,7 +69,7 @@ function Sessions() {
       const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
       return (
         <div key={session.id} className="session-item">
-          <Link to={`/sessions/${session.id}`} className="session-link">
+          <Link to={`/sessions/${session.id}`} className="session-link1">
             <span className="name">{session.owner?.firstName} {session.owner?.lastName}</span>{" "}
             -{" "}
             <span>{session.partner?.firstName} {session.partner?.lastName}</span>{" "}
@@ -92,7 +92,7 @@ function Sessions() {
       const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
       return (
         <div key={session.id} className="session-item">
-          <Link to={`/sessions/${session.id}`} className="session-link">
+          <Link to={`/sessions/${session.id}`} className="session-link1">
             <span className="name">{session.owner?.firstName} {session.owner?.lastName}</span>{" "}
             -{" "}
             <span className="name">{session.partner?.firstName} {session.partner?.lastName}</span>{" "}

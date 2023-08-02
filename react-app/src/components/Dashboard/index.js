@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getDashboardThunk } from "../../store/dashboard";
-import ProfileButton from "../Navigation/ProfileButton";
 import OpenModalButton from "../OpenModalButton";
 import "./Dashboard.css";
 import GetStartedModal from "./GetStarted";
@@ -38,7 +37,7 @@ function Dashboard() {
     greetingMessage = "Welcome back and good afternoon";
   }
 
-  // Filter out past sessions
+
   const upcomingSessions = dashboardData.sessions
     ? Object.values(dashboardData.sessions).filter(
         (session) => new Date(session.session_date) >= currentDate
@@ -65,7 +64,6 @@ function Dashboard() {
         <br></br>
         </h1>
       </div>
-
 
       <div className="dashboard-section-container">
       <OpenModalButton

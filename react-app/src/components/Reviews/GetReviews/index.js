@@ -60,7 +60,7 @@ function Reviews() {
       );
   return (
     <div key={review.id} className="review-item">
-      <Link to={`/reviews/${review.id}`} className="session-link1">
+      <Link to={`/reviews/${review.id}`} className="session-link2">
         <span className="name">
           Session:</span>{" "}
           <br></br>

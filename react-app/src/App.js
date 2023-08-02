@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Dashboard from './components/Dashboard'
@@ -13,6 +11,8 @@ import GetGyms from './components/Gyms/GetGyms'
 import GetGym from './components/Gyms/GetGym'
 import GetReviews from './components/Reviews/GetReviews'
 import GetReview from './components/Reviews/GetReview'
+import GetMessages from './components/Messages/GetMessages'
+import GetMessage from './components/Messages/GetMessage'
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +49,12 @@ function App() {
         </Route>
         <Route path="/reviews/">
           <GetReviews />
+        </Route>
+        <Route path="/messages/:id">
+          <GetMessage />
+        </Route>
+        <Route path="/messages/">
+          <GetMessages />
         </Route>
         <Route path="*">
           {user ? <Redirect to="/user/dashboard/" /> : <Redirect to="/" />}
