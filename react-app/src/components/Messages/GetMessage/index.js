@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { getConversationThunk, createMessageThunk } from '../../../store/messages';
+import OpenModalButton from "../../OpenModalButton";
+import UpdateMessageModal from '../UpdateMessageModal';
+import DeleteMessageModal from '../DeleteMessageModal';
 import './Message.css'
 
 const GetMessage = () => {
@@ -11,6 +14,7 @@ const GetMessage = () => {
   const conversation = useSelector((state) => state.messages.conversation);
   const currentUser = useSelector((state) => state.session.user);
 
+  const [modalOpen, setModalOpen] = useState(false);
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -49,13 +53,50 @@ const GetMessage = () => {
         src={require("./messagebackground.jpg").default}
         alt="Background"
       />
-      {conversation?.map((message, idx) => (
-        <div className={`message-block ${message.sender.id === currentUser.id ? 'current-user' : ''}`} key={idx}>
-          <p>{message.created_at}<br></br>{message.sender.firstName}: {message.message_text}</p>
-          <br></br>
-          <br></br>
-        </div>
-      ))}
+ {conversation?.map((message, idx) => {
+    return (
+      <div
+        className={`message-block ${message.sender && message.sender.id === currentUser?.id ? 'current-user' : ''}`}
+        key={idx}
+      >
+        <p>{message.created_at}<br></br>{message.sender?.firstName}: {message.message_text}</p>
+
+        {message.sender && message.sender.id === currentUser?.id ? (
+  <div className="message-actions">
+    <OpenModalButton
+      buttonText="Update"
+      modalComponent={
+        <UpdateMessageModal
+          messageId={message.id}
+          messageContent={message.message_text}
+          onSuccessfulUpdate={() => dispatch(getConversationThunk(id))}
+          setModalOpen={setModalOpen}
+        />
+      }
+      modalOpen={modalOpen}
+      setModalOpen={setModalOpen}
+      className="update-button"
+    />
+    <OpenModalButton
+      buttonText="Delete"
+      modalComponent={
+        <DeleteMessageModal
+          id={message.id}
+          onSuccessfulDelete={() => dispatch(getConversationThunk(id))}
+        />
+      }
+      modalOpen={modalOpen}
+      setModalOpen={setModalOpen}
+      className="cancel-button"
+    />
+  </div>
+) : null}
+        <br></br>
+        <br></br>
+      </div>
+    );
+  })}
+
       <form onSubmit={handleSubmit}>
         <ul className="error-list">
           {errors.content && <li>{errors.content}</li>}

@@ -61,3 +61,11 @@
     background-color: #add8e6;
     align-self: flex-start;
   }
+
+  .message-block .message-actions {
+    visibility: hidden;
+  }
+
+  .message-block:hover .message-actions {
+    visibility: visible;
+  }

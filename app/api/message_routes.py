@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Message
 from datetime import datetime
-from app.forms import MessageForm
+from app.forms import MessageForm,UpdateMessageForm
 
 message_routes = Blueprint('message_routes', __name__)
 
@@ -117,7 +117,7 @@ def update_message(id):
     if current_user.id != message.sender_id:
         return {"message": "Unauthorized", "statusCode": 403}, 403
 
-    form = MessageForm()
+    form = UpdateMessageForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
