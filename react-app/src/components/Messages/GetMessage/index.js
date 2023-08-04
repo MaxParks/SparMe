@@ -7,6 +7,21 @@ import UpdateMessageModal from '../UpdateMessageModal';
 import DeleteMessageModal from '../DeleteMessageModal';
 import './Message.css'
 
+function formatDateAndTime(dateString) {
+  const dateObj = new Date(dateString);
+
+  dateObj.setHours(dateObj.getHours() - 7);
+
+  const optionsDate = { year: "numeric", month: "2-digit", day: "2-digit" };
+  const optionsTime = { hour: "2-digit", minute: "2-digit" };
+
+  const formattedDate = dateObj.toLocaleDateString(undefined, optionsDate);
+  const formattedTime = dateObj.toLocaleTimeString(undefined, optionsTime);
+
+  return `${formattedDate} ${formattedTime}`;
+}
+
+
 const GetMessage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -54,12 +69,13 @@ const GetMessage = () => {
         alt="Background"
       />
  {conversation?.map((message, idx) => {
+  const formattedDateTime = formatDateAndTime(message.created_at);
     return (
       <div
         className={`message-block ${message.sender && message.sender.id === currentUser?.id ? 'current-user' : ''}`}
         key={idx}
       >
-        <p>{message.created_at}<br></br>{message.sender?.firstName}: {message.message_text}</p>
+    <p>{formattedDateTime}<br></br>{message.sender?.firstName}: {message.message_text}</p>
 
         {message.sender && message.sender.id === currentUser?.id ? (
   <div className="message-actions">
