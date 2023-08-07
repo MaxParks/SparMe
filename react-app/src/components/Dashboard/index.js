@@ -5,6 +5,7 @@ import { getDashboardThunk } from "../../store/dashboard";
 import OpenModalButton from "../OpenModalButton";
 import "./Dashboard.css";
 import GetStartedModal from "./GetStarted";
+import boxingGlove from "./boxinggloves.png"
 
 function formatDateAndTime(dateString) {
   const dateObj = new Date(dateString);
@@ -59,11 +60,6 @@ function Dashboard() {
         src={require("./boxing background.jpg").default}
         alt="Background"
       />
-      <div className="dashboard-header">
-        <h1 className="dashboard-title">Dashboard
-        <br></br>
-        </h1>
-      </div>
 
       <div className="dashboard-section-container">
       <OpenModalButton
@@ -91,6 +87,7 @@ function Dashboard() {
     <button className="load-more-button" onClick={loadMoreUsers}>Load More People</button>
   </div>
 )}
+<br></br>
 {userIndex > 0 && (
           <div className="button-container">
             <button className="collapse-users-button" onClick={collapseUsers}>Collapse Users</button>
@@ -101,7 +98,7 @@ function Dashboard() {
         <div className="dashboard-section">
           <h2 className="dashboard-section-title">Upcoming Spars:</h2>
         </div>
-        <div className="dashboard-task-list">
+        <div>
         {upcomingSessions.length === 0 ? (
   <div className="dashboard-no-upcoming-spar">
     <span>No Upcoming Spars at the moment</span>
@@ -112,11 +109,14 @@ function Dashboard() {
     return (
       <div key={session.id} className="session-link">
         <Link to={`/sessions/${session.id}`} className="dashboard-session-link">
+        <img src={boxingGlove} alt="Boxing Glove" className="boxing-glove"/>
+        <br></br>
           <span className="dashboard-session-info">
-            {session.owner.firstName} {session.owner.lastName} ---{" "}
-            {session.partner.firstName} {session.partner.lastName} ---{" "}
-            {session.gym.name} --- {session.session_type} ---{" "}
-            {formattedDate}-{formattedTime}
+            {session.partner.firstName} {session.partner.lastName}
+            {" and "}
+            {session.owner.firstName} {session.owner.lastName}
+            <br></br>
+            {formattedDate}  {formattedTime}
           </span>
         </Link>
       </div>

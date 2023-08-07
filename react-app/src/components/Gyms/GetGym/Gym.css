@@ -8,38 +8,21 @@
     font-family: 'Roboto', sans-serif;
   }
 
-  .gym-item1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    display: grid;
+  .details-box {
+    background-color: gray;
+    border: 2px solid white;
     padding: 10px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
+    border-radius: 5px;
+    border-radius: 15px;
+    margin: 20px;
   }
 
-  .gym-title {
-    color: black;
-    font-family: 'Pacifico', cursive;
-    margin: 0;
-    font-weight: bold;
-    border-radius: 8px;
-    font-size: 24px;
-    background-color: grey;
-    padding: 10px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-
+  .gym-members-container {
+    background-color: transparent;
+  padding: 10px;
+  border-radius: 15px;
   }
 
-  .gym-info {
-    background-color: grey;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 10px;
-  }
 
   .gym-sessions-container {
   border: 2px solid black;
@@ -48,16 +31,39 @@
   align-items: center;
   justify-content: flex-start;
   padding: 20px;
-  background-color: grey;
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 8px;
   font-family: 'Pacifico', cursive;
   font-size: 20px;
   }
 
+  .gym-sessions-container1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+    }
+
 .session-item {
+  padding: 20px;
 border: 2px solid black;
-background-color: rgb(141, 136, 136);
+background-color: rgba(255, 255, 255, 0.4);
 border-radius: 8px;
+margin: 10px;
+}
+
+.not-session-item {
+  padding: 20px;
+  font-size: 20px;
+  border: 2px solid black;
+  background-color: rgba(255, 255, 255, 0.4);
+  font-family: 'Pacifico', cursive;
+  border-radius: 8px;
+  margin: 10px;
 }
 
 .session-info-title {

@@ -1,13 +1,22 @@
 .dashboard-container {
   position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+
+.dashboard-session-info {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .session-link{
   padding: 10px;
+  margin: 20px;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 8px;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
   text-decoration: none;
@@ -16,6 +25,7 @@
   font-family: 'Montserrat', sans-serif;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
+
 
 .session-link:hover {
   background-color: #e6e6e6;
@@ -64,11 +74,10 @@
 }
 
 .dashboard-task-list {
-  border: 2px solid white;
   padding: 20px;
   margin: 15px;
   font-size: 24px;
-  background-color: grey;
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -80,12 +89,20 @@
 }
 
 .dashboard-user-link {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  color: black;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
+
+.boxing-glove {
+  width: 100px;
+  height: 100px;
+}
+
 
 .dashboard-upcoming-spar {
   border: 2px solid black;
@@ -99,7 +116,6 @@
 
 .dashboard-session-link {
   font-size: 20px;
-  color: #FF9900;
   text-decoration: none;
 }
 
@@ -129,6 +145,7 @@
   background-color: rgb(7, 168, 7);
   color: white;
   border: none;
+  margin-top: 20px;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -182,4 +199,11 @@
 
 .collapse-users-button:hover {
   background-color: darkred;
+}
+
+.dashboard-task-list, .dashboard-user-link, .dashboard-session-link, .dashboard-no-upcoming-spar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -54,37 +54,38 @@ function Session() {
         src={require("./mma gloves.jpg").default}
         alt="Background"
       />
-        <div className="session-details">
-          <div>
-            <p className="session-details-title">Session Details:</p>
-            <p className="session-details-content">{sessionData.details}</p>
-          </div>
-          <br />
-          <div>
-            <p className="session-details-title">Owner/Partner:</p>
-            <p className="session-details-content">
-              {sessionData.owner.firstName} {sessionData.owner.lastName} ---{" "}
-              {sessionData.partner.firstName} {sessionData.partner.lastName}
-            </p>
-          </div>
-        </div>
+<div className="session-details">
+  <div className="session-box">
+    <p className="session-details-title">Session Details:</p>
+    <p className="session-details-content">{sessionData.details}</p>
+  </div>
+  <div className="session-box">
+    <p className="session-details-title">Owner/Partner:</p>
+    <p className="session-details-content">
+      {sessionData.owner.firstName} {sessionData.owner.lastName} ---{" "}
+      {sessionData.partner.firstName} {sessionData.partner.lastName}
+    </p>
+  </div>
+</div>
 
-        <div className="session-info">
-          <div>
-            <p className="session-info-title1">Gym:</p>
-            <p className="session-info-content">{sessionData.gym.name}</p>
-          </div>
-          <div>
-            <p className="session-info-title1">Type:</p>
-            <p className="session-info-content">{sessionData.session_type}</p>
-          </div>
-          <div>
-            <p className="session-info-title1">Session Date:</p>
-            <p className="session-info-content">
-              {formattedDate} {formattedTime}
-            </p>
-          </div>
-        </div>
+<div className="session-info">
+  <div className="session-box">
+    <p className="session-info-title1">Gym:</p>
+    <p className="session-info-content">{sessionData.gym.name}</p>
+  </div>
+  <div className="session-box">
+    <p className="session-info-title1">Type:</p>
+    <p className="session-info-content">{sessionData.session_type}</p>
+  </div>
+  <div className="session-box">
+    <p className="session-info-title1">Session Date:</p>
+    <p className="session-info-content">
+      {formattedDate} {formattedTime}
+    </p>
+  </div>
+</div>
+
+
 
         <div className="session-header">
           <div className="session-title">

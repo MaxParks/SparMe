@@ -66,6 +66,7 @@ function LandingPage({ isLoaded }) {
                   modalComponent={<SignupFormModal />}
                   className="button-get-started"
                 />
+                <br></br>
                 <OpenModalButton
                   buttonText="About SparMe"
                   modalComponent={<AboutModalContent />}

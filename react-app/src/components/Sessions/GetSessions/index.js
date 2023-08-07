@@ -68,12 +68,16 @@ function Sessions() {
     upcomingSessions.map((session) => {
       const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
       return (
-        <div key={session.id} className="session-item">
+        <div key={session.id} className="session-item1">
           <Link to={`/sessions/${session.id}`} className="session-link1">
-            <span className="name">{session.owner?.firstName} {session.owner?.lastName}</span>{" "}
+            <span className="name1">{session.owner?.firstName} {session.owner?.lastName}</span>{" "}
             -{" "}
-            <span>{session.partner?.firstName} {session.partner?.lastName}</span>{" "}
-            - {session.gym?.name} - {session.session_type} -{" "}
+            <span>{session.partner?.firstName} {session.partner?.lastName}</span>
+            <br></br>
+            <br></br>
+            {session.gym?.name} - {session.session_type}
+            <br></br>
+            <br></br>
             {formattedDate} - {formattedTime}
           </Link>
         </div>
@@ -91,12 +95,16 @@ function Sessions() {
     previousSessions.map((session) => {
       const { formattedDate, formattedTime } = formatDateAndTime(session.session_date);
       return (
-        <div key={session.id} className="session-item">
+        <div key={session.id} className="session-item1">
           <Link to={`/sessions/${session.id}`} className="session-link1">
-            <span className="name">{session.owner?.firstName} {session.owner?.lastName}</span>{" "}
+            <span className="name1">{session.owner?.firstName} {session.owner?.lastName}</span>{" "}
             -{" "}
-            <span className="name">{session.partner?.firstName} {session.partner?.lastName}</span>{" "}
-            - {session.gym?.name} - {session.session_type} -{" "}
+            <span className="name1">{session.partner?.firstName} {session.partner?.lastName}</span>{" "}
+            <br></br>
+            <br></br>
+            {session.gym?.name} - {session.session_type}
+            <br></br>
+            <br></br>
             {formattedDate} - {formattedTime}
           </Link>
         </div>

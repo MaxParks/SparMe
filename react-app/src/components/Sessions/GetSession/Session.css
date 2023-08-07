@@ -19,15 +19,22 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.session-details {
+.session-box {
   border: 2px solid white;
-  width: 30%;
-  margin-bottom: 20px;
-  background-color: grey;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.session-details, .session-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 
 .session-details p.session-details-title {
   margin: 0;
@@ -49,18 +56,14 @@
 }
 
 .session-info {
-  border: 2px solid white;
-  background-color: grey;
-  border-radius: 8px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   width: 40%;
-  text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
+
+
 
 .session-info p.session-info-title {
   margin: 0;
@@ -76,7 +79,6 @@
   margin: 10px;
   font-size: 22px;
   color: black;
-  background-color: grey;
   border-radius: 8px;
   font-family: 'Montserrat', sans-serif;
 }

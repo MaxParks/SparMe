@@ -65,3 +65,33 @@
     width: 200px;
     height: auto;
   }
+
+  .button-login, .button-get-started, .button-about {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+
+  .button-login {
+    background-color: #4CAF50; /* Green */
+  }
+
+  .button-get-started {
+    background-color: #008CBA; /* Blue */
+  }
+
+  .button-about {
+    background-color: #f44336; /* Red */
+  }
+
+  .button-login:hover, .button-get-started:hover, .button-about:hover {
+    opacity: 0.8;
+  }

@@ -82,21 +82,21 @@ console.log('gymData:', gymData);
         alt="Background"
       />
       <div className="session-details">
-        <div>
-          <p className="session-details-title">Gym:</p>
-          <p className="session-details-content">{gymData.name}</p>
-        </div>
-        <br></br>
-        <div>
-          <p className="session-details-title">City:</p>
-          <p className="session-details-content">{gymData.city}</p>
-        </div>
-        <br></br>
-        <div>
-          <p className="session-details-title">Martial Art:</p>
-          <p className="session-details-content">{gymData.martial_art}</p>
-        </div>
-      </div>
+  <div className="details-box">
+    <p className="session-details-title">Gym:</p>
+    <p className="session-details-content">{gymData.name}</p>
+  </div>
+  <br></br>
+  <div className="details-box">
+    <p className="session-details-title">City:</p>
+    <p className="session-details-content">{gymData.city}</p>
+  </div>
+  <br></br>
+  <div className="details-box">
+    <p className="session-details-title">Martial Art:</p>
+    <p className="session-details-content">{gymData.martial_art}</p>
+  </div>
+</div>
 
       {!userIsOwner && !userIsMember && (
         <button className="update-button" onClick={joinGym}>
@@ -130,6 +130,7 @@ console.log('gymData:', gymData);
         </ul>
       )}
 
+    <div className="gym-members-container">
       <h1 className="session-info-title">Members:</h1>
       <div className="gym-sessions-container">
         <ul>
@@ -148,45 +149,52 @@ console.log('gymData:', gymData);
             )}
         </ul>
         <br></br>
+        </div>
       </div>
 
       <h1 className="session-info-title">Sessions:</h1>
-      <div className="gym-sessions-container">
-        {gymSessions &&
-          gymSessions.map((session) => {
-            const { formattedDate, formattedTime } = formatDateAndTime(
-              session.session_date
-            );
+{ (userIsOwner || userIsMember) ? (
+  <div className="gym-sessions-container1">
+    {gymSessions &&
+      gymSessions.map((session) => {
+        const { formattedDate, formattedTime } = formatDateAndTime(
+          session.session_date
+        );
 
-            const showDetails = showDetailsMap[session.id] || false;
+        const showDetails = showDetailsMap[session.id] || false;
 
-            return (
-              <div className="session-item" key={session.id}>
-                <a href={`/sessions/${session.id}`}>Session {session.id}</a>
-                <br></br>
-                <button onClick={() => toggleDetails(session.id)}>
-                  {showDetails ? "Hide Details" : "Show Details"}
-                </button>
-                {showDetails && (
-                  <div>
-                    <p>
-                      Owner: {session.owner.firstName} {session.owner.lastName}
-                    </p>
-                    <p>
-                      Partner: {session.partner.firstName}{" "}
-                      {session.partner.lastName}
-                    </p>
-                    <p>Session Type: {session.session_type}</p>
-                    <p>
-                      Session Date: {formattedDate} {formattedTime}
-                    </p>
-                    <p>Details: {session.details}</p>
-                  </div>
-                )}
+        return (
+          <div className="session-item" key={session.id}>
+            <a href={`/sessions/${session.id}`}>Session {session.id}</a>
+            <br></br>
+            <button onClick={() => toggleDetails(session.id)}>
+              {showDetails ? "Hide Details" : "Show Details"}
+            </button>
+            {showDetails && (
+              <div>
+                <p>
+                  Owner: {session.owner.firstName} {session.owner.lastName}
+                </p>
+                <p>
+                  Partner: {session.partner.firstName}{" "}
+                  {session.partner.lastName}
+                </p>
+                <p>Session Type: {session.session_type}</p>
+                <p>
+                  Session Date: {formattedDate} {formattedTime}
+                </p>
+                <p>Details: {session.details}</p>
               </div>
-            );
-          })}
-      </div>
+            )}
+          </div>
+        );
+      })}
+  </div>
+) : (
+  <p className="not-session-item">You can only see Sessions if you are the Owner or a Member of this gym</p>
+)}
+
+
     </div>
   );
 }
