@@ -14,12 +14,14 @@ function GetStartedModal() {
 
   return (
     <div>
-      <h2>To get started you need to:</h2>
+      <h2>To get started:</h2>
 
-      <h3>1. Join or Create a Gym <br></br>
+      <h3>1. Look at the list of users and message someone about training <br></br> </h3>
+
+      <h3>2. Join or Create a Gym <br></br>
       <button onClick={() => navigateAndCloseModal(`/gyms`)}>Gyms</button></h3>
 
-      <h3>2. Set up a Sparring Session <br></br>
+      <h3>3. Set up a Sparring Session <br></br>
       <button onClick={() => navigateAndCloseModal(`/sessions`)}>Sessions</button></h3>
 
       <h3>Congratulations! After these steps, you're all set.</h3>

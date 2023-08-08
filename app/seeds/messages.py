@@ -4,38 +4,57 @@ from datetime import datetime
 
 
 def seed_messages():
-    sender1 = User.query.filter_by(email='demo@aa.io').first()
-    receiver1 = User.query.filter_by(email='alice@aa.io').first()
-    sender2 = User.query.filter_by(email='bob@aa.io').first()
-    receiver2 = User.query.filter_by(email='demo@aa.io').first()
-    sender3 = User.query.filter_by(email='marnie@aa.io').first()
-    receiver3 = User.query.filter_by(email='alice@aa.io').first()
+    demo = User.query.filter_by(email='demo@aa.io').first()
+    alice = User.query.filter_by(email='alice@aa.io').first()
+    bob = User.query.filter_by(email='bob@aa.io').first()
+    charlie = User.query.filter_by(email='charlie@aa.io').first()
+    marnie = User.query.filter_by(email='marnie@aa.io').first()
+    david = User.query.filter_by(email='david@aa.io').first()
+    elizabeth = User.query.filter_by(email='elizabeth@aa.io').first()
 
     message1 = Message(
-        sender_id=sender1.id,
-        receiver_id=receiver1.id,
+        sender_id=demo.id,
+        receiver_id=alice.id,
         message_text='Hey Alice would you like to spar this weekend?',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
 
+    message11 = Message(
+        sender_id=alice.id,
+        receiver_id=demo.id,
+        message_text='I would love to what time are you thinking?',
+        created_at=datetime.utcnow(),
+        updated_at=datetime.utcnow()
+    )
+
+    message111 = Message(
+        sender_id=demo.id,
+        receiver_id=alice.id,
+        message_text='How does 9am work at Gracie?',
+        created_at=datetime.utcnow(),
+        updated_at=datetime.utcnow()
+    )
+
     message2 = Message(
-        sender_id=sender2.id,
-        receiver_id=receiver2.id,
+        sender_id=bob.id,
+        receiver_id=demo.id,
         message_text='Hey Demo I am new around here and want to find a BJJ training partner. Are you down?',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
 
     message3 = Message(
-        sender_id=sender3.id,
-        receiver_id=receiver3.id,
+        sender_id=marnie.id,
+        receiver_id=demo.id,
         message_text='Hi, I am Marnie. I would love to train with you.',
         created_at=datetime.utcnow(),
         updated_at=datetime.utcnow()
     )
 
     db.session.add(message1)
+    db.session.add(message11)
+    db.session.add(message111)
     db.session.add(message2)
     db.session.add(message3)
     db.session.commit()

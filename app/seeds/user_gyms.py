@@ -54,6 +54,31 @@ def seed_user_gyms():
         gym_id=gym_1.id
     )
 
+    bob_user_gym = UserGym(
+    user_id=bob_user.id,
+    gym_id=gym_1.id
+)
+
+    charlie_user_gym = UserGym(
+    user_id=charlie_user.id,
+    gym_id=gym_1.id
+)
+
+    marnie_wildcard_boxing = UserGym(
+    user_id=marnie_user.id,
+    gym_id=gym_2.id
+)
+
+    bob_wildcard_boxing = UserGym(
+    user_id=bob_user.id,
+    gym_id=gym_2.id
+)
+
+    charlie_wildcard_boxing = UserGym(
+    user_id=charlie_user.id,
+    gym_id=gym_2.id
+)
+
     # Add to session
     db.session.add(demo_user_gym)
     db.session.add(marnie_user_gym)
@@ -62,6 +87,11 @@ def seed_user_gyms():
     db.session.add(charlie_user_gym)
     db.session.add(david_user_gym)
     db.session.add(elizabeth_user_gym)
+    db.session.add(bob_user_gym)
+    db.session.add(charlie_user_gym)
+    db.session.add(marnie_wildcard_boxing)
+    db.session.add(bob_wildcard_boxing)
+    db.session.add(charlie_wildcard_boxing)
 
     # Commit to database
     db.session.commit()

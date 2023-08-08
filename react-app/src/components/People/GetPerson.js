@@ -50,12 +50,7 @@ function Person() {
 
 
   return (
-    <div>
-        <img
-        className="background-image"
-        src={require("./try this 1.jpg").default}
-        alt="Background"
-      />
+    <div className="background-container">
        <div className="person-container">
       <h1 className="person-name">{user.firstName} {user.lastName}</h1>
       <p className="person-details">City:<br></br> {user.city}</p>
