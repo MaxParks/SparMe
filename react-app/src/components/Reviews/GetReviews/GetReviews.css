@@ -40,7 +40,7 @@
 
   .review-item {
     border: 2px solid black;
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 10px;
     background-color: grey;
     padding: 10px;
@@ -49,6 +49,7 @@
   }
 
   .name {
+    font-size: 18px;
     font-weight: bold;
     color: black;
     font-family: 'Bangers', cursive;

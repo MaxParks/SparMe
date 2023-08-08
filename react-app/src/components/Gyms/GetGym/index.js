@@ -134,17 +134,17 @@ console.log('gymData:', gymData);
       <h1 className="session-info-title">Members:</h1>
       <div className="gym-sessions-container">
         <ul>
-          <li>
+          <p>
             <strong>Owner: </strong>
             {`${gymData.owner?.firstName} ${gymData.owner?.lastName}`}
-          </li>
+          </p>
           {gymMembers &&
             gymMembers.map(
               (member) =>
                 member.id !== gymData.owner_id && (
-                  <li key={member.id}>
+                  <p key={member.id}>
                     {`${member.user.firstName} ${member.user.lastName}`}
-                  </li>
+                  </p>
                 )
             )}
         </ul>

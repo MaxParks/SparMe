@@ -85,13 +85,13 @@ function Dashboard() {
         </div>
         {dashboardData.allUsers && dashboardData.allUsers.length > userIndex + 5 && (
   <div className="button-container">
-    <button className="load-more-button" onClick={loadMoreUsers}>Load More People</button>
+    <button className="load-more-button" onClick={loadMoreUsers}>More People</button>
   </div>
 )}
 <br></br>
 {userIndex > 0 && (
           <div className="button-container">
-            <button className="collapse-users-button" onClick={collapseUsers}>Collapse Users</button>
+            <button className="collapse-users-button" onClick={collapseUsers}>Collapse</button>
           </div>
         )}
       </div>
