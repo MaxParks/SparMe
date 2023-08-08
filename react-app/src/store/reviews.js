@@ -73,6 +73,21 @@ export const getReviewsThunk = () => async dispatch => {
     }
 };
 
+export const getPartnerReviewsThunk2 = (userId) => async dispatch => {
+  const response = await fetch(`/api/reviews/partner/${userId}`); // Include the user ID in the URL
+
+  if (response.ok) {
+    const arrayData = await response.json();
+    const data = arrayData.reduce((acc, item) => {
+      acc[item.id] = item;
+      return acc;
+    }, {});
+    dispatch(loadPartnerReviews(data));
+    return data;
+  }
+};
+
+
 export const getReviewThunk = id => async dispatch => {
   const response = await fetch(`/api/reviews/${id}`);
 

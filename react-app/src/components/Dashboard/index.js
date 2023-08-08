@@ -76,10 +76,11 @@ function Dashboard() {
             // Display only up to the current index of users
             Object.values(dashboardData.allUsers).slice(0, userIndex + 5).map((user) => (
               <div key={user.id} className="dashboard-user-item">
-                <div className="dashboard-user-link">
-                  <span className="user-info">{user.firstName} {user.lastName}</span>
-                </div>
-              </div>
+  <Link to={`/users/${user.id}`} className="dashboard-user-link">
+    <span className="user-info">{user.firstName} {user.lastName}</span>
+  </Link>
+</div>
+
             ))}
         </div>
         {dashboardData.allUsers && dashboardData.allUsers.length > userIndex + 5 && (

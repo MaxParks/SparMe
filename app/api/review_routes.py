@@ -49,6 +49,28 @@ def get_partner_reviews():
     partner_reviews_data = [review.to_dict() for review in partner_reviews]
     return jsonify(partner_reviews_data), 200
 
+@review_routes.route('/partner/<int:user_id>', methods=['GET'])
+@login_required
+def get_partner_reviews2(user_id):
+    # Find the user by the provided ID
+    user = User.query.get(user_id)
+    if not user:
+        return {"message": "User not found", "statusCode": 404}, 404
+
+    # Get all sessions that the specified user was a part of
+    user_sessions = Session.query.filter(
+        (Session.owner_id == user_id) | (Session.partner_id == user_id)
+    ).all()
+
+    # Get all reviews for these sessions, excluding reviews made by the user
+    partner_reviews = Review.query.filter(
+        Review.session_id.in_([session.id for session in user_sessions]),
+        Review.reviewer_id != user_id
+    ).all()
+
+    partner_reviews_data = [review.to_dict() for review in partner_reviews]
+    return jsonify(partner_reviews_data), 200
+
 # Create a review
 @review_routes.route('/', methods=['POST'])
 @login_required

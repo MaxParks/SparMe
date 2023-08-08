@@ -86,6 +86,12 @@
 .dashboard-user-item {
   margin-bottom: 10px;
   border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-user-item:hover {
+  background-color: grey;
 }
 
 .dashboard-user-link {

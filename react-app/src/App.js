@@ -13,6 +13,7 @@ import GetReviews from './components/Reviews/GetReviews'
 import GetReview from './components/Reviews/GetReview'
 import GetMessages from './components/Messages/GetMessages'
 import GetMessage from './components/Messages/GetMessage'
+import GetPeople from './components/People/GetPerson'
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path="/sessions/">
           <GetSessions />
+        </Route>
+        <Route path="/users/:id">
+          <GetPeople />
         </Route>
         <Route path="/gyms/:id">
           <GetGym />
