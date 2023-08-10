@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="social-media-container3">
-        <a href="https://github.com/MaxParks" target="_blank" rel="noreferrer">
+        <a href="https://github.com/MaxParks/SparMe" target="_blank" rel="noreferrer">
           <img
             className="social-media-logo3"
             src={githubLogo}

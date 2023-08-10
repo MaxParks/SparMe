@@ -78,7 +78,7 @@ function LandingPage({ isLoaded }) {
         </div>
       </div>
       <div className="social-media-container">
-  <a href="https://github.com/MaxParks" target="_blank" rel="noreferrer">
+  <a href="https://github.com/MaxParks/SparMe" target="_blank" rel="noreferrer">
     <img
       className="social-media-logo1"
       src={require("./2222.png").default}
