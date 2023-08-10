@@ -1,0 +1,42 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    padding: 20px;
+  }
+
+
+  .footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 5px;
+  }
+
+  .social-media-container3 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: 20px;
+  }
+
+  .social-media-logo3 {
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+  }
+
+  .social-media-logo4 {
+    width: 100px;
+    height: auto;
+    opacity: 0.9;
+  }
+
+  .social-media-logo3:hover {
+    opacity: 1;
+  }
+  .social-media-logo4:hover {
+    opacity: 1;
+  }

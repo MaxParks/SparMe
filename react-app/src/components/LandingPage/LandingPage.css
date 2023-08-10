@@ -64,6 +64,7 @@
   .SparMe-logo {
     width: 200px;
     height: auto;
+    border-radius: 8px;
   }
 
   .button-login, .button-get-started, .button-about {
@@ -95,3 +96,31 @@
   .button-login:hover, .button-get-started:hover, .button-about:hover {
     opacity: 0.8;
   }
+
+  .social-media-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    padding: 20px;
+}
+
+.social-media-logo {
+  width: 120px;
+  height: auto;
+  opacity: 0.8;
+}
+
+.social-media-logo1 {
+  width: 60px;
+  height: auto;
+  opacity: 0.9;
+}
+
+.social-media-logo:hover {
+  opacity: 2;
+}
+.social-media-logo1:hover {
+  opacity: 2;
+}

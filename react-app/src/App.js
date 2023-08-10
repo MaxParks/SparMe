@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import Footer from "./Footer";
 import Dashboard from './components/Dashboard'
 import LandingPage from './components/LandingPage'
 import GetSession from './components/Sessions/GetSession'
@@ -64,6 +65,7 @@ function App() {
           {user ? <Redirect to="/user/dashboard/" /> : <Redirect to="/" />}
         </Route>
       </Switch>
+      {user && <Footer />}
     </>
   );
 }

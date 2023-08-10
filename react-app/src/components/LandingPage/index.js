@@ -77,6 +77,24 @@ function LandingPage({ isLoaded }) {
           </div>
         </div>
       </div>
+      <div className="social-media-container">
+  <a href="https://github.com/MaxParks" target="_blank" rel="noreferrer">
+    <img
+      className="social-media-logo1"
+      src={require("./2222.png").default}
+      alt="GitHub"
+    />
+    <br></br>
+  </a>
+  <a href="https://www.linkedin.com/in/maxjparks/" target="_blank" rel="noreferrer">
+    <img
+      className="social-media-logo"
+      src={require("./linkedin2.png").default}
+      alt="LinkedIn"
+    />
+  </a>
+</div>
+
     </div>
   );
 }
