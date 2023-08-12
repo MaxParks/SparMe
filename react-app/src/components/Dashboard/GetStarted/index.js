@@ -16,10 +16,10 @@ function GetStartedModal() {
     <div>
       <h2>To get started:</h2>
 
-      <h3>1. Look at the list of users and message someone about training <br></br> </h3>
-
-      <h3>2. Join or Create a Gym <br></br>
+      <h3>1. Join or Create a Gym <br></br>
       <button onClick={() => navigateAndCloseModal(`/gyms`)}>Gyms</button></h3>
+
+      <h3>2. Look at the list of users and message someone about training <br></br> </h3>
 
       <h3>3. Set up a Sparring Session <br></br>
       <button onClick={() => navigateAndCloseModal(`/sessions`)}>Sessions</button></h3>

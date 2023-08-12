@@ -61,11 +61,6 @@ function LandingPage({ isLoaded }) {
                 is here, look no further!
               </p>
               <div className="cta-buttons">
-                <OpenModalButton
-                  buttonText="Start Here"
-                  modalComponent={<SignupFormModal />}
-                  className="button-get-started"
-                />
                 <br></br>
                 <OpenModalButton
                   buttonText="About SparMe"

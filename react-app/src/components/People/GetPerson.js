@@ -54,9 +54,9 @@ function Person() {
        <div className="person-container">
       <h1 className="person-name">{user.firstName} {user.lastName}</h1>
       <p className="person-details">City:<br></br> {user.city}</p>
-      <p className="person-details">Experience:<br></br> {user.experience}</p>
+      <p className="person-details">Experience:<br></br> {user.experience} Years</p>
       <p className="person-details">Height:<br></br> {convertInchesToFeetAndInches(user.height)}</p>
-      <p className="person-details">Weight:<br></br> {user.weight}</p>
+      <p className="person-details">Weight:<br></br> {user.weight} lbs</p>
     </div>
     <div className="message-button">
     <OpenModalButton
